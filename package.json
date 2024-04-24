@@ -35,12 +35,16 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@eslint/js": "^9.1.1",
     "@types/node": "^18",
     "@types/react": "^18.2.23",
     "@types/react-dom": "^18.2.8",
     "autoprefixer": "^10.4.15",
+    "eslint": "^8.57.0",
     "postcss": "^8.4.29",
+    "prettier": "3.2.5",
     "tailwindcss": "^3.3.3",
-    "typescript": "^5.2.2"
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^7.7.1"
   }
 }

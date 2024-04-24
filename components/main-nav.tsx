@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import Image from "next/image"
+import Image from "next/image";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 // import CustomLink from "./custom-link"
-import React from "react"
+import React from "react";
 // import { Button } from "./ui/button"
 
 export function MainNav() {
@@ -41,7 +41,7 @@ export function MainNav() {
         </NavigationMenuList>
       </NavigationMenu> */}
     </div>
-  )
+  );
 }
 
 // const ListItem = React.forwardRef<

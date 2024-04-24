@@ -1,24 +1,22 @@
-import NextAuth from "next-auth"
-import GitHub from "next-auth/providers/github"
+import NextAuth from "next-auth";
+import GitHub from "next-auth/providers/github";
 
-import type { NextAuthConfig } from "next-auth"
+import type { NextAuthConfig } from "next-auth";
 
 export const config = {
-  providers: [
-    GitHub,
-  ],
+  providers: [GitHub],
   basePath: "/auth",
   callbacks: {
     authorized({ request, auth }) {
-      const { pathname } = request.nextUrl
+      const { pathname } = request.nextUrl;
       // if (pathname === "/middleware-example") return !!auth
-      return true
+      return true;
     },
     jwt({ token, trigger, session }) {
-      if (trigger === "update") token.name = session.user.name
-      return token
+      if (trigger === "update") token.name = session.user.name;
+      return token;
     },
   },
-} satisfies NextAuthConfig
+} satisfies NextAuthConfig;
 
-export const { handlers, auth, signIn, signOut } = NextAuth(config)
+export const { handlers, auth, signIn, signOut } = NextAuth(config);
