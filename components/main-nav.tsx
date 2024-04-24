@@ -5,11 +5,15 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 // import CustomLink from "./custom-link"
 import React from "react";
+import Link from "next/link";
 // import { Button } from "./ui/button"
 
 export function MainNav() {
   return (
     <div className="flex gap-4 items-center">
+      <Link href="/test-page" title="test link">
+        Test change user name
+      </Link>
       {/* <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
