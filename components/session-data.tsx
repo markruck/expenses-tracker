@@ -1,7 +1,13 @@
+'use client'
 import type { Session } from "next-auth";
+import { useUserStore } from "../lib/stores/userStore";
+import React from "react";
+
 
 export default function SessionData({ session }: { session: Session | null }) {
+  const { setUser } = useUserStore();
   if (session?.user) {
+    setUser(session.user)
     return (
       <div className="flex flex-col gap-4 w-full">
         <h2 className="text-xl font-bold">Current Session Data</h2>

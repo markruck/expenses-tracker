@@ -1,0 +1,8 @@
+.nav-container {
+  display: flex;
+  flex: 1;
+}
+
+.nav-container a {
+  margin-right: 1rem;
+}

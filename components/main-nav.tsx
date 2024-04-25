@@ -1,15 +1,29 @@
 "use client";
 
-import Image from "next/image";
+// import Image from "next/image";
 
-import { cn } from "@/lib/utils";
+// import { cn } from "@/lib/utils";
 // import CustomLink from "./custom-link"
 import React from "react";
+import Link from "next/link";
+import styles from "./main-nav.module.css";
 // import { Button } from "./ui/button"
 
 export function MainNav() {
   return (
-    <div className="flex gap-4 items-center">
+    <div className={styles['nav-container']}>
+      <Link href="/" title="Home">
+        Home
+      </Link>
+      <Link href="/income" title="Income">
+        Income
+      </Link>
+      <Link href="/expenses" title="Expenses">
+        Expenses
+      </Link>
+      <Link href="/" title="Expenses">
+        Settings
+      </Link>
       {/* <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
