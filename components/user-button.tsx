@@ -1,5 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { Button } from "./ui/button";
+import styles from "./user-button.module.css";
 import { auth } from "auth";
 import {
   DropdownMenu,
@@ -14,14 +14,14 @@ export default async function UserButton() {
   const session = await auth();
   if (!session?.user) return <SignIn />;
   return (
-    <div className="flex gap-2 items-center">
+    <div className="flex aligin-items-center gap-05">
       <span className="hidden text-sm sm:inline-flex">
         {session.user.email}
       </span>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="relative w-8 h-8 rounded-full">
-            <Avatar className="w-8 h-8">
+          <button className={`${styles.button} pointer`}>
+            <Avatar className="w-100 h-100">
               {session.user.image && (
                 <AvatarImage
                   src={
@@ -33,7 +33,7 @@ export default async function UserButton() {
               )}
               <AvatarFallback>{session.user.email}</AvatarFallback>
             </Avatar>
-          </Button>
+          </button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-56" align="end" forceMount>
           <DropdownMenuLabel className="font-normal">
