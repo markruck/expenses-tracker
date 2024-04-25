@@ -7,9 +7,9 @@ import Header from "@/components/header";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "NextAuth.js Example",
+  title: "Finance tracker",
   description:
-    "This is an example site to demonstrate how to use NextAuth.js for authentication",
+    "A simple finance tracker to help you keep track of your income and expenses.",
 };
 
 export default function RootLayout({ children }: React.PropsWithChildren) {
@@ -18,7 +18,7 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
       <body className={inter.className}>
         <div className="flex flex-col justify-between w-full h-full min-h-screen">
           <Header />
-          <main className="flex-auto w-full max-w-3xl px-4 py-4 mx-auto sm:px-6 md:py-6">
+          <main /* className="flex-auto w-full max-w-3xl px-4 py-4 mx-auto sm:px-6 md:py-6" */>
             {children}
           </main>
           <Footer />

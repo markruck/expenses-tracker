@@ -1,21 +1,15 @@
 'use client'
 import type { Session } from "next-auth";
-import { useUserserStore } from "../lib/stores/userStore";
+import { useUserStore } from "../lib/stores/userStore";
 import React from "react";
 
 
 export default function SessionData({ session }: { session: Session | null }) {
-  const { user, setUser } = useUserserStore();
-
+  const { setUser } = useUserStore();
   if (session?.user) {
+    setUser(session.user)
     return (
       <div className="flex flex-col gap-4 w-full">
-
-        <button onClick={() => {
-          setUser('Mark')
-        }}>Change name</button>
-
-        <div>Name: {user}</div>
         <h2 className="text-xl font-bold">Current Session Data</h2>
         {Object.keys(session.user).length > 3 ? (
           <p>
