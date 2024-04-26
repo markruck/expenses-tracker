@@ -4,8 +4,8 @@ import { Income, IncomeForm } from "@/components/income";
 const Page = () => {
     return (
         <div>
-            <Income />
             <IncomeForm />
+            <Income />
         </div>
     );
 }
