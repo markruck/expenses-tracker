@@ -1,11 +1,13 @@
-import React from "react";
+import { Income, IncomeForm } from "@/components/income";
 
-const Income = () => {
+// Code: Income page component
+const Page = () => {
     return (
         <div>
-            <h1>Income</h1>
+            <IncomeForm />
+            <Income />
         </div>
     );
 }
 
-export default Income;
+export default Page;

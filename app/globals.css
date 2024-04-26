@@ -45,48 +45,74 @@
     @apply bg-background text-foreground;
   }
 }
-
+:root {
+  --border-color: #d9d9d9
+}
 html {
   font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
-.flex-auto {
-  flex: auto;
+input {
+  border: solid 1px var(--border-color);
+  border-radius: 5px;
+  margin: 1rem;
 }
-
-.flex {
-  display: flex;
-}
-
-.flex-1 {
-  flex: 1;
+select {
+  border: solid 1px var(--border-color);
+  border-radius: 5px;
+  margin: 1rem;
+  padding: 0.1rem;
 }
 
 .aligin-items-center {
   align-items: center;
 }
-
-.justify-center {
-  justify-content: center;
-}
-
-.gap-05 {
-  gap: 0.5rem;
-}
-
-.pointer {
-  cursor: pointer;
-}
-
-.w-100 {
-  width: 100%;
-}
-
-.h-100 {
-  height: 100%;
-} 
-
 .base-layout {
   max-width: 60vw;
   margin: 0 auto;
+}
+.bold {
+  font-weight: bold;
+}
+.capitalize {
+  text-transform: capitalize;
+}
+.flex {
+  display: flex;
+}
+.flex-auto {
+  flex: auto;
+}
+.flex-col {
+  flex-direction: column;
+}
+.flex-end {
+  justify-content: flex-end;
+}
+.flex-row {
+  flex-direction: row;
+}
+.flex-1 {
+  flex: 1;
+}
+.gap-05 {
+  gap: 0.5rem;
+}
+.justify-center {
+  justify-content: center;
+}
+.h-100 {
+  height: 100%;
+}
+.pointer {
+  cursor: pointer;
+}
+.space-around {
+  justify-content: space-around;
+}
+.space-between {
+  justify-content: space-between;
+}
+.w-100 {
+  width: 100%;
 }
