@@ -1,4 +1,5 @@
 import { signal, computed } from "@preact/signals-react";
+import { sortBy } from "lodash"
 
 type ExpensePorps = {
   date: Date;
@@ -19,14 +20,6 @@ export const useExpensesStore = () => {
 
   const totalExpenses = (expenses: ExpensePorps[]) => expenses.reduce((a, b) => a + (b.amount), 0);
 
-  // const getExpensesByCategory = (category: string, month: number) => {
-  //   return computed(() => {
-  //     const getExpensesByCategoryAndMonth = expenses.value.filter((entry) => entry.category === category && entry.date.getMonth() === month);
-  //     const totalExpensesByCategoryAndMonth = totalExpenses(getExpensesByCategoryAndMonth);
-  //     return { expenses: getExpensesByCategoryAndMonth, totalExpenses: totalExpensesByCategoryAndMonth };
-  //   })
-  // }
-
   const getExpenses = (month: number, category?: string) => {
     return computed(() => {
       const getExpensesByCategoryAndMonth = expenses.value.filter((entry) => {
@@ -34,7 +27,7 @@ export const useExpensesStore = () => {
         return entry.category === category && entry.date.getMonth() === month
       });
       const totalExpensesByCategoryAndMonth = totalExpenses(getExpensesByCategoryAndMonth);
-      return { expenses: getExpensesByCategoryAndMonth, totalExpenses: totalExpensesByCategoryAndMonth };
+      return { expenses: sortBy(getExpensesByCategoryAndMonth, 'date'), totalExpenses: totalExpensesByCategoryAndMonth };
     })
   }
 

@@ -13,7 +13,7 @@ const ExpensesForm = () => {
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
-    if (!date || !amount || !category) {
+    if (!date || !amount || !category || category === 'all') {
       alert('Please fill all required fields.');
       return;
     }
@@ -35,7 +35,7 @@ const ExpensesForm = () => {
           <label htmlFor="income">Amount</label>
           <input type="number" id="amount" name="amount" required={true} value={amount} onChange={(e) => { setAmount(e.target.valueAsNumber) }} />
         </div>
-        <CategoriesSelector category={category} setCategory={setCategory} />
+        <CategoriesSelector category={category} setCategory={setCategory} row withLabel />
         <div className="flex space-between align-center">
           <label htmlFor="description">Description</label>
           <textarea id="description" name="description" value={description} onChange={(e) => { setDescription(e.target.value) }} />

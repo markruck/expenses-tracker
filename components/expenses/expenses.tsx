@@ -5,6 +5,7 @@ import MonthSelector from "../monthSelector";
 import Expense from "./expense";
 import { useCategoriesStore } from "@/lib/stores/categoriesStore";
 import CategoriesSelector from "../categorieSelector";
+import styles from "./expenses.module.css";
 
 const Expenses = () => {
   const { getExpenses } = useExpensesStore();
@@ -22,19 +23,28 @@ const Expenses = () => {
   const handleSetCategory = (category: string) => {
     setCategory(category);
   }
+  if (!expenses.length) {
+    return (
+      <div className="list-container">
+        <p>No expense entries</p>
+      </div>
+    )
+  }
 
   return (
-    <div>
-      <div className="flex flex-row">
+    <div className={styles.container}>
+      <div className="flex flex-row gap-05">
         <MonthSelector month={month} setMonth={handleSetMonth} />
-        <CategoriesSelector category={category} setCategory={handleSetCategory} />
+        <CategoriesSelector category={category} setCategory={handleSetCategory} showAll />
       </div>
-      {expenses.map((entry, index) => {
-        return (
-          <Expense key={`expense_${index}`} {...entry} index={index} />
-        )
-      })}
-      {expenses.length ? <p className="flex flex-end bold">Total Expenses: {currencyFormatDE.format(totalExpenses)}</p> : null}
+      <div className="list-container">
+        {expenses.map((entry, index) => {
+          return (
+            <Expense key={`expense_${index}`} {...entry} index={index} />
+          )
+        })}
+        {expenses.length ? <p className="flex flex-end bold margin-1-0">Total Expenses: {currencyFormatDE.format(totalExpenses)}</p> : null}
+      </div>
     </div>
   );
 }

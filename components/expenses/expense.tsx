@@ -1,5 +1,6 @@
 import { useExpensesStore } from "@/lib/stores/expensesStore";
 import { currencyFormatDE } from "@/lib/utils"
+import styles from "./expenses.module.css";
 
 type ExpenseProps = {
   date: Date;
@@ -12,16 +13,16 @@ type ExpenseProps = {
 const expense = ({ date, category, description, amount, index }: ExpenseProps) => {
   const { deleteExpense } = useExpensesStore();
   return (
-    <div key={`income_${index}`}>
-      <div className="flex flex-row space-between">
+    <div key={`income_${index}`} className="list-entry-container">
+      <div className={styles.entry}>
         <p>{date.toLocaleDateString('de-DE')}</p>
         <p className="capitalize">{category}</p>
-        <p className="capitalize">{description}</p>
-        <p className="capitalize">{currencyFormatDE.format(amount)}</p>
+        <p className="font-size-small">{description}</p>
+        <p className="capitalize" style={{ gridColumnEnd: 'd' }}>{currencyFormatDE.format(amount)}</p>
       </div>
       <div className="flex flex-row gap-05">
-        <p>Edit</p>
-        <button onClick={() => { deleteExpense(index) }}>Delete</button>
+        {/* <p>Edit</p> */}
+        <button className="button button-tiny button-danger margin-0" onClick={() => { deleteExpense(index) }}>Delete</button>
       </div>
     </div>
   )
