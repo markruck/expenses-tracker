@@ -52,7 +52,7 @@ const IncomeForm = () => {
                     <textarea id="description" name="description" value={description} onChange={(e) => { setDescription(e.target.value) }} />
                 </div>
                 <div className="flex flex-1 justify-center">
-                    <button type="submit" className="flex-1">Add</button>
+                    <button type="submit" className="flex-1 button">Add</button>
                 </div>
             </form> : null}
         </div>

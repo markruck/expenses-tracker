@@ -5,7 +5,8 @@ import { currencyFormatDE } from "@/lib/utils";
 import styles from "./income.module.css";
 
 const Income = () => {
-    const { income, deleteIncome, totalIncome } = useIncomeStore();
+    const { income, deleteIncome, totalIncome, loading } = useIncomeStore();
+    if (loading) return <p>Loading...</p>
     if (!income.value.length) {
         return (
             <div className="list-container">
@@ -17,8 +18,8 @@ const Income = () => {
         <div className="list-container">
             {income.value.map((entry, index) => {
                 return (
-                    <div className="list-entry-container">
-                        <div key={`income_${index}`} className={styles.entry}>
+                    <div key={`income_${index}`} className="list-entry-container">
+                        <div className={styles.entry}>
                             <p className="capitalize">{entry.type} income:</p>
                             <p className="font-size-small">{entry.description}</p>
                             <p style={{ gridColumnEnd: 'd' }}>{currencyFormatDE.format(entry.amount)}</p>
