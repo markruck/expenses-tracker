@@ -14,7 +14,7 @@ export default async function UserButton() {
   const session = await auth();
   if (!session?.user) return <SignIn />;
   return (
-    <div className="flex aligin-items-center gap-05">
+    <div className="flex align-center gap-05">
       <span className="hidden text-sm sm:inline-flex">
         {session.user.email}
       </span>

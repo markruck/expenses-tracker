@@ -1,29 +1,40 @@
 import { useExpensesStore } from "@/lib/stores/expensesStore";
 import { currencyFormatDE } from "@/lib/utils";
+import React from "react";
+import MonthSelector from "../monthSelector";
+import Expense from "./expense";
+import { useCategoriesStore } from "@/lib/stores/categoriesStore";
+import CategoriesSelector from "../categorieSelector";
 
 const Expenses = () => {
-  // useSignals();
-  const { expenses, deleteExpense, totalExpenses } = useExpensesStore();
+  const { getExpenses } = useExpensesStore();
+  const { categories } = useCategoriesStore();
+  const [month, setMonth] = React.useState(new Date().getMonth());
+  const [category, setCategory] = React.useState<string>('all');
+
+  const { value: { expenses, totalExpenses }
+  } = getExpenses(month, category);
+
+  const handleSetMonth = (month: number) => {
+    setMonth(month);
+  }
+
+  const handleSetCategory = (category: string) => {
+    setCategory(category);
+  }
 
   return (
     <div>
-      {expenses.value.map((entry, index) => {
+      <div className="flex flex-row">
+        <MonthSelector month={month} setMonth={handleSetMonth} />
+        <CategoriesSelector category={category} setCategory={handleSetCategory} />
+      </div>
+      {expenses.map((entry, index) => {
         return (
-          <div key={`income_${index}`}>
-            <div className="flex flex-row space-between">
-              <p className="">{entry.date.toISOString()}</p>
-              <p className="capitalize">{entry.type}</p>
-              <p className="capitalize">{entry.description}</p>
-              <p className="capitalize">{currencyFormatDE.format(entry.amount)}</p>
-            </div>
-            <div className="flex flex-row gap-05">
-              <p>Edit</p>
-              <button onClick={() => { deleteExpense(index) }}>Delete</button>
-            </div>
-          </div>
+          <Expense key={`expense_${index}`} {...entry} index={index} />
         )
       })}
-      <p className="flex flex-end bold">Total Income: {currencyFormatDE.format(totalExpenses)}</p>
+      {expenses.length ? <p className="flex flex-end bold">Total Expenses: {currencyFormatDE.format(totalExpenses)}</p> : null}
     </div>
   );
 }
