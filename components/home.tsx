@@ -6,17 +6,24 @@ import styles from "../styles/Home.module.css";
 import { useIncomeStore } from "@/lib/stores/incomeStore";
 import { useExpensesStore } from "@/lib/stores/expensesStore";
 import { currencyFormatDE } from "@/lib/utils";
+import MonthSelector from "./monthSelector";
 
 
 const Home = ({ session }: { session: Session | null }) => {
   const { setUser } = useUserStore();
   const { totalIncome } = useIncomeStore();
-  const { totalExpenses } = useExpensesStore();
+  const { getExpenses } = useExpensesStore();
+  const [month, setMonth] = React.useState(new Date().getMonth());
+
+  const { value: { totalExpenses }
+  } = getExpenses(month);
+
   if (session?.user) {
     setUser(session.user)
     return (
       <div className="flex flex-col gap-4 w-full">
-        <h1>Dashborad</h1>
+        <h1 className="align-self-center">Dashborad</h1>
+        <MonthSelector month={month} setMonth={setMonth} />
         <div className="flex flex-row space-between">
           <p>Total Income:</p>
           <p>{currencyFormatDE.format(totalIncome)}</p>
