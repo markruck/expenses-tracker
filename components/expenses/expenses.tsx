@@ -32,7 +32,8 @@ const Expenses = () => {
   }
 
   return (
-    <div className={styles.container}>
+    <div>
+      <h2 className="text-align-center">Expenses list</h2>
       <div className="flex flex-row gap-05">
         <MonthSelector month={month} setMonth={handleSetMonth} />
         <CategoriesSelector category={category} setCategory={handleSetCategory} showAll />
