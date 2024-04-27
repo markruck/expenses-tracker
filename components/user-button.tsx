@@ -20,7 +20,7 @@ export default async function UserButton() {
       </span>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <button className={`${styles.button} pointer`}>
+          <button className={`${styles.button} cursor-pointer`}>
             <Avatar className="w-100 h-100">
               {session.user.image && (
                 <AvatarImage

@@ -27,7 +27,7 @@ export const useExpensesStore = () => {
         return entry.category === category && entry.date.getMonth() === month
       });
       const totalExpensesByCategoryAndMonth = totalExpenses(getExpensesByCategoryAndMonth);
-      return { expenses: sortBy(getExpensesByCategoryAndMonth, 'date'), totalExpenses: totalExpensesByCategoryAndMonth };
+      return { expenses: sortBy(getExpensesByCategoryAndMonth, ['category', 'date']), totalExpenses: totalExpensesByCategoryAndMonth };
     })
   }
 

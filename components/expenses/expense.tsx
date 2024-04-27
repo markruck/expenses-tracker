@@ -13,7 +13,7 @@ type ExpenseProps = {
 const expense = ({ date, category, description, amount, index }: ExpenseProps) => {
   const { deleteExpense } = useExpensesStore();
   return (
-    <div key={`income_${index}`} className="list-entry-container">
+    <div key={`income_${index}`} className="list-entry-container cursor-initial">
       <div className={styles.entry}>
         <p>{date.toLocaleDateString('de-DE')}</p>
         <p className="capitalize">{category}</p>
@@ -21,7 +21,6 @@ const expense = ({ date, category, description, amount, index }: ExpenseProps) =
         <p className="capitalize" style={{ gridColumnEnd: 'd' }}>{currencyFormatDE.format(amount)}</p>
       </div>
       <div className="flex flex-row gap-05">
-        {/* <p>Edit</p> */}
         <button className="button button-tiny button-danger margin-0" onClick={() => { deleteExpense(index) }}>Delete</button>
       </div>
     </div>
