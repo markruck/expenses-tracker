@@ -6,7 +6,7 @@ type MonthSelectorProps = {
 const MonthSelector = ({ month, setMonth }: MonthSelectorProps) => {
   return (
     <div className="flex flex-col">
-      <label>Month</label>
+      {/* <label>Month</label> */}
       <select className="fit-content" onChange={(e) => setMonth(parseInt(e.target.value))} defaultValue={month}>
         <option disabled value="default">Select</option>
         <option value="0">January</option>

@@ -21,20 +21,22 @@ const Home = ({ session }: { session: Session | null }) => {
   if (session?.user) {
     setUser(session.user)
     return (
-      <div className="flex flex-col gap-4 w-full">
+      <div className="w-full">
         <h1 className="align-self-center">Dashborad</h1>
         <MonthSelector month={month} setMonth={setMonth} />
-        <div className="flex flex-row space-between">
-          <p>Total Income:</p>
-          <p>{currencyFormatDE.format(totalIncome)}</p>
-        </div>
-        <div className="flex flex-row space-between">
-          <p>Total Expenses:</p>
-          <p>{currencyFormatDE.format(totalExpenses)}</p>
-        </div>
-        <div className="flex flex-row space-between bold">
-          <p>Net Savings: </p>
-          <p>{currencyFormatDE.format(totalIncome - totalExpenses)}</p>
+        <div className="list-container">
+          <div className="flex flex-row space-between list-entry-container">
+            <p>Total Income:</p>
+            <p>{currencyFormatDE.format(totalIncome)}</p>
+          </div>
+          <div className="flex flex-row space-between list-entry-container">
+            <p>Total Expenses:</p>
+            <p>{currencyFormatDE.format(totalExpenses)}</p>
+          </div>
+          <div className="flex flex-row space-between bold margin-1-0">
+            <p>Net Savings: </p>
+            <p>{currencyFormatDE.format(totalIncome - totalExpenses)}</p>
+          </div>
         </div>
       </div>
     );
