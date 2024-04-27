@@ -1,4 +1,4 @@
-/* @tailwind base;
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -41,10 +41,18 @@
     @apply border-border;
   }
 
+  h1 {
+    @apply mb-4 text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-4xl lg:text-5xl dark:text-white;
+  }
+
+  h2 {
+    @apply text-xl font-bold dark:text-white;
+  }
+
   body {
     @apply bg-background text-foreground;
   }
-} */
+}
 
 :root {
   --border-color: #d9d9d9
@@ -225,10 +233,6 @@ button[type="submit"] {
 
 .space-between {
   justify-content: space-between;
-}
-
-.text-align-center {
-  text-align: center;
 }
 
 .w-100 {
