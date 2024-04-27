@@ -22,7 +22,7 @@ const Home = ({ session }: { session: Session | null }) => {
     setUser(session.user)
     return (
       <div className="w-full">
-        <h1 className="align-self-center">Dashborad</h1>
+        <h1 className="align-self-center margin-1-0">Dashborad</h1>
         <MonthSelector month={month} setMonth={setMonth} />
         <div className="list-container">
           <div className="flex flex-row space-between list-entry-container">
