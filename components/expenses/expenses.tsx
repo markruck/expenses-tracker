@@ -1,11 +1,10 @@
 import { useExpensesStore } from "@/lib/stores/expensesStore";
-import { currencyFormatDE } from "@/lib/utils";
 import React from "react";
 import MonthSelector from "../monthSelector";
-import Expense from "./expense";
 import { useCategoriesStore } from "@/lib/stores/categoriesStore";
 import CategoriesSelector from "../categorieSelector";
-import styles from "./expenses.module.css";
+import ExpenseCategory from "./expenseCategory";
+import { currencyFormatDE } from "@/lib/utils";
 
 const Expenses = () => {
   const { getExpenses } = useExpensesStore();
@@ -23,13 +22,6 @@ const Expenses = () => {
   const handleSetCategory = (category: string) => {
     setCategory(category);
   }
-  if (!expenses.length) {
-    return (
-      <div className="list-container">
-        <p>No expense entries</p>
-      </div>
-    )
-  }
 
   return (
     <div>
@@ -39,12 +31,17 @@ const Expenses = () => {
         <CategoriesSelector category={category} setCategory={handleSetCategory} showAll />
       </div>
       <div className="list-container">
-        {expenses.map((entry, index) => {
-          return (
-            <Expense key={`expense_${index}`} {...entry} index={index} />
-          )
-        })}
-        {expenses.length ? <p className="flex flex-end bold margin-1-0">Total Expenses: {currencyFormatDE.format(totalExpenses)}</p> : null}
+        {expenses.length === 0 ? <p>No expense entries</p> :
+          categories.value.map((category) => {
+            const expensesByCategory = expenses.filter((entry) => entry.category === category);
+            if (expensesByCategory.length === 0) return null;
+            return (
+              <div key={`category_${category}`}>
+                <ExpenseCategory category={category} expenses={expensesByCategory} />
+              </div>
+            )
+          })}
+        <p className="flex flex-end bold margin-1-0">Total Expenses: {currencyFormatDE.format(totalExpenses)}</p>
       </div>
     </div>
   );
