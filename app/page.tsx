@@ -7,8 +7,6 @@ export default async function Index() {
   return (
     <div className="">
       <Home session={session} />
-      {/* <div className="">Current Session</div> */}
-      {/* <pre className="">{JSON.stringify(session, null, 2)}</pre> */}
     </div>
   );
 }

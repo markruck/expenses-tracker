@@ -20,6 +20,7 @@ const Home = ({ session }: { session: Session | null }) => {
 
   if (session?.user) {
     setUser(session.user)
+
     return (
       <div className="w-full">
         <h1 className="align-self-center margin-1-0">Dashborad</h1>

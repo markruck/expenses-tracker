@@ -1,31 +1,51 @@
-// A custom hook to get data from local storage with a getter and setter
+type LocalStorageProps = (key: string, defaultValue: any) => any;
+
+/**
+ * A custom hook to get data from local storage with a getter and setter
+ * @returns {Function} - getStoredValue(key, defaultValue) - A getter function
+ * @returns {Function} - setStoredValue - A setter function
+ * @example 
+ * const { getStoredValue, setStoredValue } = useLocalStorage();
+ * const storedValue = getStoredValue('key', defaultValue);
+ * setStoredValue('key', value);
+ */
 
 const useLocalStorage = () => {
-  // Get the stored value from local storage
-  const getStoredValue = (key, defaultValue) => {
+  /**
+   * Getter function to get a stored value from local storage
+   * @param key 
+   * @param defaultValue 
+   * @returns the stored value or the default value
+   * @example 
+   * const { getStoredValue, setStoredValue } = useLocalStorage();
+   * const storedValue = getStoredValue('key', defaultValue);
+   */
+  const getStoredValue: LocalStorageProps = (key, defaultValue) => {
     try {
-      // Get the stored value
       const storedValue = localStorage.getItem(key);
-      // If the stored value is not null, return it
       if (storedValue !== null) {
         return JSON.parse(storedValue);
       }
-      // If the stored value is null, return the initial value
       return defaultValue;
     }
     catch (error) {
-      // If there is an error, return the initial value
       return defaultValue;
     }
   };
-  // Set the stored value in local storage
-  const setStoredValue = (key: string, value: any) => {
+
+  /**
+   * Setter function to set a value in local storage
+   * @param key 
+   * @param value 
+   * @example 
+   * const { getStoredValue, setStoredValue } = useLocalStorage();
+   * setStoredValue('key', value);
+   */
+  const setStoredValue: LocalStorageProps = (key, value) => {
     try {
-      // Set the value in local storage
       localStorage.setItem(key, JSON.stringify(value));
     }
     catch (error) {
-      // Log the error
       console.error(error);
     }
   };
