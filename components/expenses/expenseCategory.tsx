@@ -12,21 +12,23 @@ type ExpensePorps = {
 }
 
 const ExpenseCategory = ({ category, expenses }: { category: string, expenses: ExpensePorps[] }) => {
+
   const [isCollapsed, setIsCollapsed] = useState(true);
   const totalExpensesByCategory = expenses.reduce((a, b) => a + b.amount, 0);
+
   return (
-    <div className={`cursor-pointer ${styles.categoryContanier}`} onClick={() => setIsCollapsed(!isCollapsed)}>
-      <div className="flex flex-1 space-between">
+    <div className={`cursor-pointer ${styles.categoryContanier}`}>
+      <div className="flex flex-1 space-between align-center" onClick={() => setIsCollapsed(!isCollapsed)}>
         <h3 className="capitalize bold">{category}</h3>
+        <p className="flex flex-end bold margin-1-0">{currencyFormatDE.format(totalExpensesByCategory)}</p>
       </div>
-      <div className={styles.category}>
-        {isCollapsed ? null : expenses.map((entry, index) => {
+      {isCollapsed ? null : <div className={styles.category}>
+        {expenses.map((entry, index) => {
           return (
             <Expense key={`expense_${index}`} {...entry} index={index} />
           )
         })}
-      </div>
-      <p className="flex flex-end bold margin-1-0">{currencyFormatDE.format(totalExpensesByCategory)}</p>
+      </div>}
     </div>
   )
 }
