@@ -26,7 +26,7 @@ const ExpenseCategory = ({ category, expenses }: { category: string, expenses: E
           )
         })}
       </div>
-      <p className="flex flex-end bold margin-1-0">Total Expenses: {currencyFormatDE.format(totalExpensesByCategory)}</p>
+      <p className="flex flex-end bold margin-1-0">{currencyFormatDE.format(totalExpensesByCategory)}</p>
     </div>
   )
 }
