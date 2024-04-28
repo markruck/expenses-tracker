@@ -1,6 +1,6 @@
 .entry {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr auto;
   gap: 1rem;
 }
 
@@ -12,6 +12,7 @@
   width: 90%;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 3rem;
 }
 
 .categoryContanier {
