@@ -140,6 +140,10 @@ input {
   text-transform: capitalize;
 }
 
+.chart {
+  border: solid 1px #ccc;
+}
+
 .cursor-initial {
   cursor: initial;
 }
