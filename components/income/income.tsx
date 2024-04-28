@@ -3,10 +3,11 @@
 import { useIncomeStore } from "../../lib/stores/incomeStore";
 import { currencyFormatDE } from "@/lib/utils";
 import styles from "./income.module.css";
+import LoadingScreen from "../ui/loadingScreen";
 
 const Income = () => {
     const { income, deleteIncome, totalIncome, loading } = useIncomeStore();
-    if (loading) return <p>Loading...</p>
+    if (loading) return <LoadingScreen />
     if (!income.value.length) {
         return (
             <div className="list-container">

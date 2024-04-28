@@ -5,6 +5,7 @@ import { useCategoriesStore } from "@/lib/stores/categoriesStore";
 import CategoriesSelector from "../categorieSelector";
 import ExensesCategories from "./expenseCategories";
 import { currencyFormatDE } from "@/lib/utils";
+import LoadingScreen from "../ui/loadingScreen";
 
 const Expenses = () => {
   const { getExpenses, loading } = useExpensesStore();
@@ -23,6 +24,8 @@ const Expenses = () => {
     setCategory(category);
   }
 
+  if (loading) return <LoadingScreen />
+
   return (
     <div>
       <h2 className="text-align-center">Expenses list</h2>
@@ -31,7 +34,7 @@ const Expenses = () => {
         <CategoriesSelector category={category} setCategory={handleSetCategory} showAll />
       </div>
       <div className="list-container">
-        <ExensesCategories categories={categories} expenses={expenses} loading={loading} />
+        <ExensesCategories categories={categories} expenses={expenses} />
         <p className="flex flex-end bold margin-1-0">Total Expenses: {currencyFormatDE.format(totalExpenses)}</p>
       </div>
     </div>
