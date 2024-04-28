@@ -1,7 +1,12 @@
 import ExpenseCategory from "./expenseCategory";
-
-const ExpenseCategories = ({ categories, expenses, loading }) => {
-  if (loading) return <p>Loading...</p>
+import LoadingScreen from "./loadingScreen";
+type ExpenseCategoriesProps = {
+  categories: { value: string[] };
+  expenses: { date: Date; amount: number; category: string; description: string }[];
+  loading: boolean;
+}
+const ExpenseCategories = ({ categories, expenses, loading }: ExpenseCategoriesProps) => {
+  if (loading) return <LoadingScreen />
   return (
     <div>
       {categories.value.map((category) => {
