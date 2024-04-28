@@ -1,14 +1,24 @@
-import ExpenseCategory from "./expenseCategory";
+import ExpenseCategory from "./expenseCategory"
+
 type ExpenseCategoriesProps = {
-  categories: { value: string[] };
-  expenses: { date: Date; amount: number; category: string; description: string }[];
+  categories: { value: string[] }
+  expenses: {
+    date: Date
+    amount: number
+    category: string
+    description: string
+    index: number
+  }[]
 }
 const ExpenseCategories = ({ categories, expenses }: ExpenseCategoriesProps) => {
 
   return (
     <div>
       {categories.value.map((category) => {
-        const expensesByCategory = expenses.filter((entry) => entry.category === category);
+        const expensesByCategory = expenses.filter((entry, index) => {
+          entry.index = index;
+          return entry.category === category
+        });
         return (
           expensesByCategory.length === 0 ? null : <div key={`category_${category}`}>
             <ExpenseCategory category={category} expenses={expensesByCategory} />
