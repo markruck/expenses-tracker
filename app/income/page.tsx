@@ -1,6 +1,13 @@
 import { Income, IncomeForm } from "@/components/income";
 import Link from "next/link";
 
+/**
+ * Income page. Returns the Income form and the Income list.
+ * @example
+ * <Page />
+ * @returns {React.Component} The Income page
+ */
+
 const Page = () => {
     return (
         <div>

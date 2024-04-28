@@ -10,6 +10,15 @@ type IncomeStoreProps = {
 
 export const income = signal<IncomeStoreProps[] | []>([]);
 
+/**
+ * Income store. Sets the income from local storage and provides functions to add and delete income
+ * @example
+ * const { income, addIncome, deleteIncome } = useIncomeStore();
+ * @returns {object} The income array
+ * @returns {function} The addIncome function
+ * @returns {function} The deleteIncome function
+ */
+
 export const useIncomeStore = () => {
     const { getStoredValue, setStoredValue } = useLocalStorage();
     const [loading, setLoading] = React.useState(true);

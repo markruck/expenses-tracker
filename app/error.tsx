@@ -3,6 +3,13 @@
 import Link from 'next/link'
 import { useEffect } from 'react'
 
+/**
+ * Error component to catch errors in the app route.
+ * @example
+ * <Error />
+ * @returns {React.Component} The Error component
+ */
+
 export default function Error({
   error,
 }: {

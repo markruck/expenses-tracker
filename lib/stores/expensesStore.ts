@@ -12,6 +12,16 @@ export type ExpensePorps = {
 
 export const expenses = signal<ExpensePorps[] | []>([]);
 
+/**
+ * Expenses store. Sets the expenses from local storage and provides functions to add and delete expenses
+ * @example
+ * const { expenses, addExpense, deleteExpense, getExpenses } = useExpensesStore();
+ * @returns {object} The expenses array
+ * @returns {function} The addExpense function
+ * @returns {function} The deleteExpense function
+ * @returns {function} The getExpenses function
+ */
+
 export const useExpensesStore = () => {
   const { getStoredValue, setStoredValue } = useLocalStorage();
   const [loading, setLoading] = React.useState(true);

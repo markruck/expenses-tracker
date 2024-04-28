@@ -2,7 +2,14 @@
 
 import { Expenses, ExpensesForm } from "@/components/expenses";
 
-const Income = () => {
+/**
+ * Expenses page. Returns the Expenses form and the Expenses list.
+ * @example
+ * <Page />
+ * @returns {React.Component} The Expenses page
+ */
+
+const Page = () => {
     return (
         <div>
             <ExpensesForm />
@@ -11,4 +18,4 @@ const Income = () => {
     );
 }
 
-export default Income;
+export default Page;

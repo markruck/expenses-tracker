@@ -13,12 +13,12 @@ const invalid_type_error = 'Invalid type provided for this field';
 const required_error = 'This field cannot be blank';
 
 /**
- * A form to add new expenses
+ * A collapsible form to add new expenses
  * @example
  * <ExpensesForm />
  * @see CategoriesSelector
  */
-// generate a zod schema for the form and validate with useValdateForm
+
 const ExpensesFormSchema = z.object({
   amount: z.coerce.number({ invalid_type_error, required_error }).positive(),
   category: z.string({ invalid_type_error: 'Invalid type provided for this field' }),

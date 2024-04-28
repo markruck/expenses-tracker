@@ -12,6 +12,14 @@ type ExpensePorps = {
   index: number;
 }
 
+/**
+ * ExpenseCategory component. Returns a single expense category with a colapsed list of expenses
+ * @example
+ * <ExpenseCategory category="Groceries" expenses={[{ date: new Date(), amount: 100, category: "Groceries", description: "Some description", index: 1 }]} />
+ * @param {string} category - The category of the expense
+ * @param {object[]} expenses - The expenses array
+ */
+
 const ExpenseCategory = ({ category, expenses }: { category: string, expenses: ExpensePorps[] }) => {
 
   const [isCollapsed, setIsCollapsed] = useState(true);
@@ -23,13 +31,15 @@ const ExpenseCategory = ({ category, expenses }: { category: string, expenses: E
         <h3 className="capitalize bold">{category}</h3>
         <p className="flex flex-end bold margin-1-0">{currencyFormatDE.format(totalExpensesByCategory)}</p>
       </div>
-      {isCollapsed ? null : <div className={styles.category}>
-        {expenses.map((entry, index) => {
-          return (
-            <Expense key={`expense_${index}`} {...entry} />
-          )
-        })}
-      </div>}
+      {isCollapsed
+        ? null
+        : <div className={styles.category}>
+          {expenses.map((entry, index) => {
+            return (
+              <Expense key={`expense_${index}`} {...entry} />
+            )
+          })}
+        </div>}
     </div>
   )
 }

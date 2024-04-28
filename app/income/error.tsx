@@ -3,13 +3,20 @@
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 
-export default function Error({
+/**
+ * Error component to catch errors in the income route.
+ * @example
+ * <Error />
+ * @returns {React.Component} The Error component
+ */
+
+const Error = ({
   error,
   // reset,
 }: {
   error: Error & { digest?: string }
   reset: () => void
-}) {
+}) => {
   const router = useRouter()
   useEffect(() => {
     // Log the error to an error reporting service
@@ -35,3 +42,5 @@ export default function Error({
     </div >
   )
 }
+
+export default Error
