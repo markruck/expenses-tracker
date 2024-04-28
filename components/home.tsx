@@ -25,6 +25,8 @@ const Home = ({ session }: { session: Session | null }) => {
   const { value: { totalExpenses, expenses }
   } = getExpenses(month);
 
+  const { income, deleteIncome, loading } = useIncomeStore();
+
   if (session?.user) {
     setUser(session.user)
     const chartData = [
@@ -32,16 +34,29 @@ const Home = ({ session }: { session: Session | null }) => {
       ...expenses.map(({ category, amount }) => [category, amount])
     ];
 
+    const incomeChartData = [
+      ["Category", "Amount"],
+      ...income.value.map(({ type, amount }) => [type, amount])
+    ];
+
     return (
       <div className="w-full">
         <h1 className="align-self-center margin-1-0">Dashborad</h1>
         <MonthSelector month={month} setMonth={setMonth} />
-        <>
-          <ChartComponent data={chartData} chartType="PieChart" width="100%" height="300px" options={{
-            title: "Expenses by Category",
-            is3D: true,
-          }} className={styles.chart} />
-        </>
+        <div className="flex flex-1 flex-row space-between">
+          <div style={{ width: '49.5%' }}>
+            <ChartComponent data={chartData} chartType="PieChart" width="100%" height="300px" options={{
+              title: "Expenses",
+              is3D: true,
+            }} className="chart" />
+          </div>
+          <div style={{ width: '49.5%' }}>
+            <ChartComponent data={incomeChartData} chartType="PieChart" width="100%" height="300px" options={{
+              title: "Income",
+              is3D: true,
+            }} className="chart" />
+          </div>
+        </div>
         <div className="list-container">
           <div className="flex flex-row space-between list-entry-container">
             <p>Total Income:</p>
