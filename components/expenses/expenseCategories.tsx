@@ -10,6 +10,15 @@ type ExpenseCategoriesProps = {
     index: number
   }[]
 }
+
+/**
+ * ExpenseCategories component
+ * @example
+ * <ExpenseCategories categories={{ value: ["Groceries", "Rent"] }} expenses={[{ date: new Date(), amount: 100, category: "Groceries", description: "Some description", index: 1 }]} />
+ * @param {object} categories - The categories object
+ * @param {object[]} expenses - The expenses array
+ */
+
 const ExpenseCategories = ({ categories, expenses }: ExpenseCategoriesProps) => {
 
   return (
