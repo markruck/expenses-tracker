@@ -3,12 +3,13 @@ import { signal, computed } from "@preact/signals-react";
 import useLocalStorage from "./localStorage";
 import { sortBy } from "lodash"
 
-type ExpensePorps = {
+export type ExpensePorps = {
   date: Date;
   amount: number;
   category: string;
   description: string;
 }
+
 export const expenses = signal<ExpensePorps[] | []>([]);
 
 export const useExpensesStore = () => {
