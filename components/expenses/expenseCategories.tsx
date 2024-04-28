@@ -26,6 +26,7 @@ const ExpenseCategories = ({ categories, expenses }: ExpenseCategoriesProps) => 
       {categories.value.map((category) => {
         const expensesByCategory = expenses.filter((entry, index) => {
           entry.index = index;
+          console.log(entry)
           return entry.category === category
         });
         return (

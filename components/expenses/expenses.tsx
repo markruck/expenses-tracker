@@ -7,6 +7,13 @@ import ExensesCategories from "./expenseCategories";
 import { currencyFormatDE } from "@/lib/utils";
 import LoadingScreen from "../ui/loadingScreen";
 
+/**
+ * Expenses component. Returns a list of expenses by category
+ * @example
+ * <Expenses />
+ * @returns {React.Component} The Expenses component
+ */
+
 const Expenses = () => {
   const { getExpenses, loading } = useExpensesStore();
   const { categories } = useCategoriesStore();

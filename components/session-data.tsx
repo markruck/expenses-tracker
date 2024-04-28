@@ -3,6 +3,13 @@ import type { Session } from "next-auth";
 import { useUserStore } from "../lib/stores/userStore";
 import React from "react";
 
+/**
+ * SessionData component for the app route
+ * @example
+ * <SessionData session={session} />
+ * @param {Session} session - The session object
+ * @returns {React.Component} The SessionData component
+ */
 
 export default function SessionData({ session }: { session: Session | null }) {
   const { setUser } = useUserStore();

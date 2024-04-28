@@ -1,9 +1,16 @@
-// Get saved income entries from the income store
 'use client'
+
 import { useIncomeStore } from "../../lib/stores/incomeStore";
 import { currencyFormatDE } from "@/lib/utils";
 import styles from "./income.module.css";
 import LoadingScreen from "../ui/loadingScreen";
+
+/**
+ * Income component. Returns a list of income entries
+ * @example
+ * <Income />
+ * @returns {React.Component} The Income component
+ */
 
 const Income = () => {
     const { income, deleteIncome, totalIncome, loading } = useIncomeStore();

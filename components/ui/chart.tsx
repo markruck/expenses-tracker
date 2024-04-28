@@ -1,5 +1,3 @@
-// A custome chart component that uses the react-google-chart library to render a pie chart. Uses the useExpensesStore hook to get the expenses data for the selected month. And the months data is passed as a prop to the component.
-
 import React from "react";
 import { Chart, ChartWrapperProps } from "react-google-charts";
 
@@ -11,6 +9,19 @@ type PieChartProps = {
   options: object;
   className?: string;
 };
+
+/**
+ * A chart component
+ * @example
+ * <ChartComponent data={chartData} chartType="PieChart" width="100%" height="300px" options={{ title: "Expenses by Category", is3D: true }} />
+ * @param {Array<Array<string | number>>} data - The data for the chart
+ * @param {ChartWrapperProps["chartType"]} chartType - The type of the chart
+ * @param {string} width - The width of the chart
+ * @param {string} height - The height of the chart
+ * @param {object} options - The options for the chart
+ * @param {string} className - The class name for the chart
+ * @returns {React.Component} The Chart component
+ */
 
 const ChartComponent = ({ data, chartType, width, height, options, className }: PieChartProps) => {
 

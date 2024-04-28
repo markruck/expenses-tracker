@@ -4,7 +4,13 @@ import styles from './income.module.css';
 type IncomeFormHeaderProps = {
   showForm: boolean;
   setShowForm: () => void;
-};
+}
+
+/**
+ * A header for the income form
+ * @example
+ * <IncomeFormHeader />
+ */
 
 const IncomeFormHeader = ({ showForm, setShowForm }: IncomeFormHeaderProps) => {
   return (
