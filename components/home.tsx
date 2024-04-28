@@ -9,6 +9,12 @@ import { currencyFormatDE } from "@/lib/utils";
 import MonthSelector from "./monthSelector";
 import ChartComponent from "./ui/chart";
 
+/** Home component
+ * @example
+ * <Home session={session} />
+ * @param {Session} session - The session object
+ * @returns {React.Component} The Home component
+ */
 
 const Home = ({ session }: { session: Session | null }) => {
   const { setUser } = useUserStore();
@@ -23,19 +29,19 @@ const Home = ({ session }: { session: Session | null }) => {
     setUser(session.user)
     const chartData = [
       ["Category", "Amount"],
-      ...expenses.map(({ category, amount }) => [category, amount, 'red'])
+      ...expenses.map(({ category, amount }) => [category, amount])
     ];
 
     return (
       <div className="w-full">
         <h1 className="align-self-center margin-1-0">Dashborad</h1>
         <MonthSelector month={month} setMonth={setMonth} />
-        <div>
+        <>
           <ChartComponent data={chartData} chartType="PieChart" width="100%" height="300px" options={{
             title: "Expenses by Category",
             is3D: true,
           }} className={styles.chart} />
-        </div>
+        </>
         <div className="list-container">
           <div className="flex flex-row space-between list-entry-container">
             <p>Total Income:</p>

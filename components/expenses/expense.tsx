@@ -11,8 +11,19 @@ type ExpenseProps = {
   index: number;
 }
 
-const expense = ({ date, category, description, amount, index }: ExpenseProps) => {
+/**
+ * A single expense entry
+ * @example
+ * <Expense date={new Date()} category="Groceries" description="Some description" amount={100} index={1} />
+ * @param {Date} date - The date of the expense
+ * @param {string} category - The category of the expense
+ * @param {string} description - The description of the expense
+ * @param {number} amount - The amount of the expense
+ * @param {number} index - The index of the expense
+ * @returns {React.Component} The Expense component
+ */
 
+const expense = ({ date, category, description, amount, index }: ExpenseProps) => {
   const { deleteExpense } = useExpensesStore();
 
   return (
