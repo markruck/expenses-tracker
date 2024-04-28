@@ -21,8 +21,8 @@ export function MainNav() {
       <Link href="/expenses" title="Expenses">
         Expenses
       </Link>
-      <Link href="/" title="Expenses">
-        Settings
+      <Link href="/error" title="Error">
+        Error
       </Link>
       {/* <NavigationMenu>
         <NavigationMenuList>

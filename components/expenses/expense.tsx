@@ -11,7 +11,9 @@ type ExpenseProps = {
 }
 
 const expense = ({ date, category, description, amount, index }: ExpenseProps) => {
+
   const { deleteExpense } = useExpensesStore();
+
   return (
     <div key={`income_${index}`} className="list-entry-container cursor-initial">
       <div className={styles.entry}>
