@@ -9,6 +9,7 @@ type ExpensePorps = {
   amount: number;
   category: string;
   description: string;
+  index: number;
 }
 
 const ExpenseCategory = ({ category, expenses }: { category: string, expenses: ExpensePorps[] }) => {
@@ -25,7 +26,7 @@ const ExpenseCategory = ({ category, expenses }: { category: string, expenses: E
       {isCollapsed ? null : <div className={styles.category}>
         {expenses.map((entry, index) => {
           return (
-            <Expense key={`expense_${index}`} {...entry} index={index} />
+            <Expense key={`expense_${index}`} {...entry} />
           )
         })}
       </div>}
