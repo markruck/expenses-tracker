@@ -3,7 +3,6 @@ import React, { SyntheticEvent } from "react";
 import { z } from "zod";
 import { useExpensesStore } from "@/lib/stores/expensesStore";
 import CategoriesSelector from "../categorieSelector";
-import styles from "./expensesForm.module.css";
 import { useValdateForm } from "../../lib/useValdateForm";
 import FormErrorMessage from "../ui/formErrorMessage";
 import ExpensesFormHeader from "./expensesFormHeader";
@@ -39,6 +38,16 @@ const ExpensesForm = () => {
 
   const [showForm, setShowForm] = React.useState(false);
 
+  const resetForm = () => {
+    setAmount('');
+    setCategory('all');
+    setDescription('');
+    setDateError([]);
+    setAmountError([]);
+    setDescriptionError([]);
+    setShowForm(false)
+  }
+
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
     if (!validate({ date, amount, category, description })) {
@@ -48,39 +57,39 @@ const ExpensesForm = () => {
       return;
     }
     addExpense({ date, amount: amount as number, category, description });
-    setAmount('')
-    setCategory('all')
-    setDescription('')
+    resetForm();
+
   }
 
   return (
     <div className="margin-1-0">
       <ExpensesFormHeader showForm={showForm} setShowForm={() => setShowForm(!showForm)} />
 
-      {showForm ? <form className={styles.form} onSubmit={handleSubmit}>
-        <h2 className="text-center">Add new Expense</h2>
-        <div className="flex space-between align-center">
-          <label htmlFor="income">Date</label>
-          <input type="date" id="date" name="date" required={true} value={date.toISOString().substring(0, 10)} onChange={(e) => { setDate(new Date(e.target.value)) }} />
-        </div>
-        {dateError.map((error, index) => <FormErrorMessage key={`dateError_${index}`} error={error} />)}
+      {showForm ? <form className="form-overlay" onSubmit={handleSubmit} onClick={(e) => {
+        resetForm()
+      }}>
+        <div className="form-overlay-content" onClick={(e) => { e.stopPropagation() }}>
+          <h2 className="text-center form-overlay-title">Add new Expense</h2>
+          <div className="flex space-between align-center">
+            <input placeholder="Enter a date" type="date" id="date" name="date" required={true} value={date.toISOString().substring(0, 10)} onChange={(e) => { setDate(new Date(e.target.value)) }} />
+          </div>
+          {dateError.map((error, index) => <FormErrorMessage key={`dateError_${index}`} error={error} />)}
 
-        <div className="flex space-between align-center">
-          <label htmlFor="income">Amount</label>
-          <input type="number" id="amount" name="amount" required={true} value={amount} onChange={(e) => { setAmount(e.target.valueAsNumber) }} />
-        </div>
-        {amountError.map((error, index) => <FormErrorMessage key={`amountError_${index}`} error={error} />)}
+          <div className="flex space-between align-center">
+            <input placeholder="Amount" type="number" id="amount" name="amount" required={true} value={amount} onChange={(e) => { setAmount(e.target.valueAsNumber) }} />
+          </div>
+          {amountError.map((error, index) => <FormErrorMessage key={`amountError_${index}`} error={error} />)}
 
-        <CategoriesSelector category={category} setCategory={setCategory} row withLabel />
+          <CategoriesSelector category={category} setCategory={setCategory} row />
 
-        <div className="flex space-between align-center">
-          <label htmlFor="description">Description</label>
-          <textarea id="description" name="description" value={description} onChange={(e) => { setDescription(e.target.value) }} />
-        </div>
-        {descriptionError.map((error, index) => <FormErrorMessage key={`descriptionError_${index}`} error={error} />)}
+          <div className="flex space-between align-center">
+            <textarea placeholder="Enter a breif description" id="description" name="description" value={description} onChange={(e) => { setDescription(e.target.value) }} />
+          </div>
+          {descriptionError.map((error, index) => <FormErrorMessage key={`descriptionError_${index}`} error={error} />)}
 
-        <div className="flex flex-1 justify-center">
-          <button type="submit" className="flex-1 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">Add</button>
+          <div className="flex flex-1 justify-center margin-1-0">
+            <button type="submit" className="flex-1 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">Add</button>
+          </div>
         </div>
       </form> : null}
     </div>

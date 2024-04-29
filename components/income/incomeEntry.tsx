@@ -2,7 +2,7 @@ import Image from "next/image";
 import trashIcon from "@/public/assets/images/trash-outline-icon.svg";
 import { useIncomeStore } from "@/lib/stores/incomeStore";
 import { currencyFormatDE } from "@/lib/utils";
-import styles from "./income.module.css";
+import styles from "./incomeEntry.module.css";
 import { IncomeProps } from "@/lib/stores/incomeStore";
 
 type IncomeEntryProps = IncomeProps & {
