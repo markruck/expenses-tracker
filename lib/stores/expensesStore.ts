@@ -2,6 +2,7 @@ import React from "react";
 import { signal, computed } from "@preact/signals-react";
 import useLocalStorage from "./localStorage";
 import { sortBy } from "lodash"
+import { useMonthStore } from "./monthStore";
 
 export type ExpenseProps = {
   date: Date;
@@ -23,6 +24,7 @@ export const expenses = signal<ExpenseProps[] | []>([]);
  */
 
 export const useExpensesStore = () => {
+  const { month } = useMonthStore();
   const { getStoredValue, setStoredValue } = useLocalStorage();
   const [loading, setLoading] = React.useState(true);
 
@@ -44,19 +46,18 @@ export const useExpensesStore = () => {
       }
       return true;
     });
-    console.log('Expenses:', expenses.value)
     setStoredValue('expenses', expenses.value);
   }
 
   const totalExpenses = (expenses: ExpenseProps[]) => expenses.reduce((a, b) => a + (b.amount), 0);
 
-  const getExpenses = (month: number, category?: string) => {
+  const getExpenses = (category?: string) => {
     return computed(() => {
       const getExpensesByCategoryAndMonth = expenses.value.filter((entry) => {
         // Check if entry.date is a javascript date object and if not convert it to a date object
         if (!(entry.date instanceof Date)) entry.date = new Date(entry.date);
-        if (category === undefined || category === 'all') return entry.date.getMonth() === month;
-        return entry.category === category && entry.date.getMonth() === month
+        if (category === undefined || category === 'all') return entry.date.getMonth() === month.value;
+        return entry.category === category && entry.date.getMonth() === month.value
       });
       const totalExpensesByCategoryAndMonth = totalExpenses(getExpensesByCategoryAndMonth);
       return {

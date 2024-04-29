@@ -1,7 +1,4 @@
-type MonthSelectorProps = {
-  month: number;
-  setMonth: (month: number) => void;
-}
+import { useMonthStore } from "@/lib/stores/monthStore";
 
 /**
  * MonthSelector component
@@ -11,10 +8,11 @@ type MonthSelectorProps = {
  * @param {function} setMonth - The setMonth function
  */
 
-const MonthSelector = ({ month, setMonth }: MonthSelectorProps) => {
+const MonthSelector = () => {
+  const { month, setMonth } = useMonthStore();
   return (
     <div className="flex flex-col">
-      <select className="fit-content" onChange={(e) => setMonth(parseInt(e.target.value))} defaultValue={month}>
+      <select className="fit-content" onChange={(e) => setMonth(parseInt(e.target.value))} defaultValue={month.value}>
         <option disabled value="default">Select</option>
         <option value="0">January</option>
         <option value="1">February</option>

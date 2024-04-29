@@ -1,13 +1,12 @@
 'use client'
 import React from "react";
 import type { Session } from "next-auth";
-import { useUserStore } from "../lib/stores/userStore";
-import styles from "./Home.module.css";
+import { useUserStore } from "../../lib/stores/userStore";
 import { useIncomeStore } from "@/lib/stores/incomeStore";
 import { useExpensesStore } from "@/lib/stores/expensesStore";
 import { currencyFormatDE } from "@/lib/utils";
-import MonthSelector from "./monthSelector";
-import ChartComponent from "./ui/chart";
+import MonthSelector from "../monthSelector";;
+import HomeCharts from "./homeCharts";
 
 /** Home component
  * @example
@@ -20,43 +19,19 @@ const Home = ({ session }: { session: Session | null }) => {
   const { setUser } = useUserStore();
   const { totalIncome } = useIncomeStore();
   const { getExpenses } = useExpensesStore();
-  const [month, setMonth] = React.useState(new Date().getMonth());
 
   const { value: { totalExpenses, expenses }
-  } = getExpenses(month);
+  } = getExpenses();
 
-  const { income, deleteIncome, loading } = useIncomeStore();
 
   if (session?.user) {
     setUser(session.user)
-    const chartData = [
-      ["Category", "Amount"],
-      ...expenses.map(({ category, amount }) => [category, amount])
-    ];
-
-    const incomeChartData = [
-      ["Category", "Amount"],
-      ...income.value.map(({ type, amount }) => [type, amount])
-    ];
 
     return (
       <div className="w-full">
         <h1 className="align-self-center margin-1-0">Dashborad</h1>
-        <MonthSelector month={month} setMonth={setMonth} />
-        <div className="flex flex-1 flex-row space-between">
-          <div style={{ width: '49.5%' }}>
-            <ChartComponent data={chartData} chartType="PieChart" width="100%" height="300px" options={{
-              title: "Expenses",
-              is3D: true,
-            }} className="chart" />
-          </div>
-          <div style={{ width: '49.5%' }}>
-            <ChartComponent data={incomeChartData} chartType="PieChart" width="100%" height="300px" options={{
-              title: "Income",
-              is3D: true,
-            }} className="chart" />
-          </div>
-        </div>
+        <MonthSelector />
+        <HomeCharts />
         <div className="list-container">
           <div className="flex flex-row space-between list-entry-container">
             <p>Total Income:</p>
