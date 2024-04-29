@@ -3,14 +3,14 @@ import { signal, computed } from "@preact/signals-react";
 import useLocalStorage from "./localStorage";
 import { sortBy } from "lodash"
 
-export type ExpensePorps = {
+export type ExpenseProps = {
   date: Date;
   amount: number;
   category: string;
   description: string;
 }
 
-export const expenses = signal<ExpensePorps[] | []>([]);
+export const expenses = signal<ExpenseProps[] | []>([]);
 
 /**
  * Expenses store. Sets the expenses from local storage and provides functions to add and delete expenses
@@ -31,17 +31,24 @@ export const useExpensesStore = () => {
     setLoading(false);
   }, []);
 
-  const addExpense = (value: ExpensePorps) => {
+  const addExpense = (value: ExpenseProps) => {
     expenses.value = [...expenses.value, value];
     setStoredValue('expenses', expenses.value);
   }
 
-  const deleteExpense = (index: number) => {
-    expenses.value = expenses.value.filter((_, i) => i !== index);
+  const deleteExpense = ({ date, category, amount }: Partial<ExpenseProps>) => {
+    expenses.value = expenses.value.filter((entry, index) => {
+      if (entry.date === date && entry.category === category && entry.amount === amount) {
+        console.log('Deleting entry:', entry);
+        return false;
+      }
+      return true;
+    });
+    console.log('Expenses:', expenses.value)
     setStoredValue('expenses', expenses.value);
   }
 
-  const totalExpenses = (expenses: ExpensePorps[]) => expenses.reduce((a, b) => a + (b.amount), 0);
+  const totalExpenses = (expenses: ExpenseProps[]) => expenses.reduce((a, b) => a + (b.amount), 0);
 
   const getExpenses = (month: number, category?: string) => {
     return computed(() => {

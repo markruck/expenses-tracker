@@ -7,7 +7,6 @@ type ExpenseCategoriesProps = {
     amount: number
     category: string
     description: string
-    index: number
   }[]
 }
 
@@ -25,7 +24,6 @@ const ExpenseCategories = ({ categories, expenses }: ExpenseCategoriesProps) => 
     <div>
       {categories.value.map((category) => {
         const expensesByCategory = expenses.filter((entry, index) => {
-          entry.index = index;
           return entry.category === category
         });
         return (
