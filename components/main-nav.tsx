@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import styles from "./main-nav.module.css";
+import { usePathname } from 'next/navigation'
 
 /**
  * The main navigation component
@@ -12,18 +13,19 @@ import styles from "./main-nav.module.css";
  */
 
 const MainNav = () => {
+  const pathName = usePathname();
   return (
     <div className={styles['nav-container']}>
-      <Link href="/" title="Home">
+      <Link className={pathName === '/' ? styles.activeLink : ''} href="/" title="Home">
         Home
       </Link>
-      <Link href="/income" title="Income">
+      <Link className={pathName === '/income' ? styles.activeLink : ''} href="/income" title="Income">
         Income
       </Link>
-      <Link href="/expenses" title="Expenses">
+      <Link className={pathName === '/expenses' ? styles.activeLink : ''} href="/expenses" title="Expenses">
         Expenses
       </Link>
-      <Link href="/error" title="Error">
+      <Link className={pathName === '/error' ? styles.activeLink : ''} href="/error" title="Error">
         Error
       </Link>
     </div>

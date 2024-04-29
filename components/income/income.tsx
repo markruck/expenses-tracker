@@ -5,6 +5,7 @@ import { currencyFormatDE } from "@/lib/utils";
 import styles from "./income.module.css";
 import LoadingScreen from "../ui/loadingScreen";
 import Image from "next/image";
+import trashIcon from "@/public/assets/images/trash-outline-icon.svg";
 
 /**
  * Income component. Returns a list of income entries
@@ -32,7 +33,7 @@ const Income = () => {
                             <p className="capitalize">{entry.type} income</p>
                             <p className="font-size-small">{entry.description}</p>
                             <p className="text-right">{currencyFormatDE.format(entry.amount)}</p>
-                            <Image className="cursor-pointer" src="/assets/images/trash-outline-icon.svg" alt="delete" width={16} height={16} onClick={() => { deleteIncome(index) }} />
+                            <Image className="cursor-pointer" src={trashIcon} alt="delete" width={16} onClick={() => { deleteIncome(index) }} />
                         </div>
                     </div>
                 )

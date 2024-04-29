@@ -5,4 +5,13 @@
 
 .nav-container a {
   margin-right: 1rem;
+  font-size: large;
+}
+
+.nav-container a:hover {
+  text-decoration: underline;
+}
+
+.activeLink {
+  text-decoration: underline;
 }

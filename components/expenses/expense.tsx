@@ -2,6 +2,7 @@ import { useExpensesStore } from "@/lib/stores/expensesStore";
 import { currencyFormatDE } from "@/lib/utils"
 import styles from "./expenses.module.css";
 import Image from "next/image";
+import trashIcon from "@/public/assets/images/trash-outline-icon.svg";
 
 type ExpenseProps = {
   date: Date;
@@ -32,7 +33,7 @@ const expense = ({ date, category, description, amount }: ExpenseProps) => {
         <p className="capitalize">{category}</p>
         <p className="font-size-small">{description}</p>
         <p className="capitalize text-right">{currencyFormatDE.format(amount)}</p>
-        <Image className="cursor-pointer" src="/assets/images/trash-outline-icon.svg" alt="delete" width={16} height={16} onClick={() => { deleteExpense({ date, category, amount }) }} />
+        <Image className="cursor-pointer" src={trashIcon} alt="delete" width={16} onClick={() => { deleteExpense({ date, category, amount }) }} />
       </div>
     </div>
   )
