@@ -4,7 +4,7 @@ import { z } from "zod";
 import { useExpensesStore } from "@/lib/stores/expensesStore";
 import CategoriesSelector from "../categorieSelector";
 import styles from "./expensesForm.module.css";
-import { useValdateForm } from "../income/useValdateForm";
+import { useValdateForm } from "../../lib/useValdateForm";
 import FormErrorMessage from "../ui/formErrorMessage";
 import ExpensesFormHeader from "./expensesFormHeader";
 

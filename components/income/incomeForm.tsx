@@ -4,7 +4,7 @@ import { useIncomeStore } from "../../lib/stores/incomeStore";
 import styles from "./incomeForm.module.css";;
 import { z } from "zod";
 import FormErrorMessage from "../ui/formErrorMessage";
-import { useValdateForm } from "./useValdateForm";
+import { useValdateForm } from "../../lib/useValdateForm";
 import IncomeFormHeader from "./incomeFormHeader";
 
 const invalid_type_error = 'Invalid type provided for this field';

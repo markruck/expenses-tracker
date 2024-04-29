@@ -1,4 +1,4 @@
-import ExpenseCategory from "./expenseCategory"
+import ExpenseCategory from "./expensesCategory"
 
 type ExpenseCategoriesProps = {
   categories: { value: string[] }
@@ -23,7 +23,7 @@ const ExpenseCategories = ({ categories, expenses }: ExpenseCategoriesProps) => 
   return (
     <div>
       {categories.value.map((category) => {
-        const expensesByCategory = expenses.filter((entry, index) => {
+        const expensesByCategory = expenses.filter(entry => {
           return entry.category === category
         });
         return (

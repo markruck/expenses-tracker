@@ -1,5 +1,5 @@
 import { auth } from "auth";
-import Home from "@/components/home";
+import Home from "@/components/home/home";
 
 /** Index page returns the Home component
  * @example
@@ -11,7 +11,7 @@ export default async function Index() {
   const session = await auth();
 
   return (
-    <div className="">
+    <div>
       <Home session={session} />
     </div>
   );
