@@ -4,6 +4,7 @@ import { useIncomeStore } from "../../lib/stores/incomeStore";
 import { currencyFormatDE } from "@/lib/utils";
 import styles from "./income.module.css";
 import LoadingScreen from "../ui/loadingScreen";
+import Image from "next/image";
 
 /**
  * Income component. Returns a list of income entries
@@ -28,13 +29,10 @@ const Income = () => {
                 return (
                     <div key={`income_${index}`} className="list-entry-container">
                         <div className={styles.entry}>
-                            <p className="capitalize">{entry.type} income:</p>
+                            <p className="capitalize">{entry.type} income</p>
                             <p className="font-size-small">{entry.description}</p>
-                            <p style={{ gridColumnEnd: 'd' }}>{currencyFormatDE.format(entry.amount)}</p>
-
-                        </div>
-                        <div>
-                            <button className="button button-danger button-tiny margin-0" onClick={() => { deleteIncome(index) }}>Delete</button>
+                            <p className="text-right">{currencyFormatDE.format(entry.amount)}</p>
+                            <Image className="cursor-pointer" src="/assets/images/trash-outline-icon.svg" alt="delete" width={16} height={16} onClick={() => { deleteIncome(index) }} />
                         </div>
                     </div>
                 )
