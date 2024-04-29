@@ -2,13 +2,13 @@ import React from "react";
 import { signal } from "@preact/signals-react";
 import useLocalStorage from "./localStorage";
 
-type IncomeStoreProps = {
+export type IncomeProps = {
     amount: number;
     type: string;
     description: string;
 }
 
-export const income = signal<IncomeStoreProps[] | []>([]);
+export const income = signal<IncomeProps[] | []>([]);
 
 /**
  * Income store. Sets the income from local storage and provides functions to add and delete income
@@ -28,7 +28,7 @@ export const useIncomeStore = () => {
         setLoading(false);
     }, []);
 
-    const addIncome = (value: IncomeStoreProps) => {
+    const addIncome = (value: IncomeProps) => {
         income.value = [...income.value, value];
         setStoredValue('income', income.value);
     }

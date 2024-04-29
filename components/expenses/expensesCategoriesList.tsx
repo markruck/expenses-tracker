@@ -1,4 +1,4 @@
-import ExpenseCategory from "./expensesCategory"
+import ExpenseCategoryEntry from "./expensesCategoryEntry"
 
 type ExpenseCategoriesProps = {
   categories: { value: string[] }
@@ -18,22 +18,22 @@ type ExpenseCategoriesProps = {
  * @param {object[]} expenses - The expenses array
  */
 
-const ExpenseCategories = ({ categories, expenses }: ExpenseCategoriesProps) => {
+const ExpenseCategoriesList = ({ categories, expenses }: ExpenseCategoriesProps) => {
 
   return (
-    <div>
+    <>
       {categories.value.map((category) => {
         const expensesByCategory = expenses.filter(entry => {
           return entry.category === category
         });
         return (
           expensesByCategory.length === 0 ? null : <div key={`category_${category}`}>
-            <ExpenseCategory category={category} expenses={expensesByCategory} />
+            <ExpenseCategoryEntry category={category} expenses={expensesByCategory} />
           </div>
         )
       })}
-    </div>
+    </>
   )
 }
 
-export default ExpenseCategories;
+export default ExpenseCategoriesList;

@@ -7,6 +7,7 @@ import { useExpensesStore } from "@/lib/stores/expensesStore";
 import { currencyFormatDE } from "@/lib/utils";
 import MonthSelector from "../monthSelector";;
 import HomeCharts from "./homeCharts";
+import LoadingScreen from "../ui/loadingScreen";
 
 /** Home component
  * @example
@@ -17,12 +18,14 @@ import HomeCharts from "./homeCharts";
 
 const Home = ({ session }: { session: Session | null }) => {
   const { setUser } = useUserStore();
-  const { totalIncome } = useIncomeStore();
-  const { getExpenses } = useExpensesStore();
+  const { totalIncome, loading: loadinIncome } = useIncomeStore();
+  const { getExpenses, loading: loadingExpesnes } = useExpensesStore();
 
-  const { value: { totalExpenses, expenses }
+  const { value: { totalExpenses }
   } = getExpenses();
 
+
+  if (loadinIncome || loadingExpesnes) return <LoadingScreen />
 
   if (session?.user) {
     setUser(session.user)

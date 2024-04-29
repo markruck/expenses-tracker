@@ -3,7 +3,7 @@ import React from "react";
 import MonthSelector from "../monthSelector";
 import { useCategoriesStore } from "@/lib/stores/categoriesStore";
 import CategoriesSelector from "../categorieSelector";
-import ExensesCategories from "./expensesCategories";
+import ExpenseCategoriesList from "./expensesCategoriesList";
 import { currencyFormatDE } from "@/lib/utils";
 import LoadingScreen from "../ui/loadingScreen";
 
@@ -30,17 +30,17 @@ const Expenses = () => {
   if (loading) return <LoadingScreen />
 
   return (
-    <div>
+    <>
       <h2 className="text-align-center">Expenses list</h2>
       <div className="flex flex-row gap-05">
         <MonthSelector />
         <CategoriesSelector category={category} setCategory={handleSetCategory} showAll />
       </div>
       <div className="list-container">
-        <ExensesCategories categories={categories} expenses={expenses} />
+        <ExpenseCategoriesList categories={categories} expenses={expenses} />
         <p className="flex flex-end bold margin-1-0">Total Expenses: {currencyFormatDE.format(totalExpenses)}</p>
       </div>
-    </div>
+    </>
   );
 }
 

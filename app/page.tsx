@@ -11,8 +11,8 @@ export default async function Index() {
   const session = await auth();
 
   return (
-    <div>
+    <>
       <Home session={session} />
-    </div>
+    </>
   );
 }

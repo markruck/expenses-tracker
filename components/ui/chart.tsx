@@ -1,5 +1,6 @@
 import React from "react";
 import { Chart, ChartWrapperProps } from "react-google-charts";
+// import LoadingScreen from "./loadingScreen";
 
 type PieChartProps = {
   data: Array<Array<string | number>>;
@@ -31,7 +32,7 @@ const ChartComponent = ({ data, chartType, width, height, options, className }: 
       width={width}
       height={height}
       chartType={chartType}
-      loader={<div>Loading Chart</div>}
+      // loader={<LoadingScreen />}
       data={data}
       options={options}
       rootProps={{ "data-testid": "1" }}
