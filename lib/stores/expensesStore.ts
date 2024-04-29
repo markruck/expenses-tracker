@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React from "react";
 import { signal, computed } from "@preact/signals-react";
 import useLocalStorage from "./localStorage";
 import { sortBy } from "lodash"
