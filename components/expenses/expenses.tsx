@@ -6,6 +6,7 @@ import CategoriesSelector from "../categorieSelector";
 import ExpenseCategoriesList from "./expensesCategoriesList";
 import { currencyFormatDE } from "@/lib/utils";
 import LoadingScreen from "../ui/loadingScreen";
+import ExpensesCharts from "./expensesCharts";
 
 /**
  * Expenses component. Returns a list of expenses by category
@@ -31,12 +32,13 @@ const Expenses = () => {
 
   return (
     <>
-      <h2 className="text-align-center">Expenses list</h2>
       <div className="flex flex-row gap-05">
         <MonthSelector />
         <CategoriesSelector category={category} setCategory={handleSetCategory} showAll />
       </div>
+      <ExpensesCharts />
       <div className="list-container">
+        <h2 className="margin-1-0">Expenses list</h2>
         <ExpenseCategoriesList categories={categories} expenses={expenses} />
         <p className="flex flex-end bold margin-1-0">Total Expenses: {currencyFormatDE.format(totalExpenses)}</p>
       </div>

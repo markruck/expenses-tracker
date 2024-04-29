@@ -15,7 +15,6 @@ const Page = () => {
     return (
         <>
             <ExpensesForm />
-            <ExpensesCharts />
             <Expenses />
         </>
     );
