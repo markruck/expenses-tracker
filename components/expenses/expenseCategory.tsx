@@ -9,7 +9,6 @@ type ExpensePorps = {
   amount: number;
   category: string;
   description: string;
-  index: number;
 }
 
 /**
