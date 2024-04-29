@@ -23,7 +23,7 @@ type ExpenseProps = {
  * @returns {React.Component} The Expense component
  */
 
-const expense = ({ date, category, description, amount }: ExpenseProps) => {
+const ExpenseEntry = ({ date, category, description, amount }: ExpenseProps) => {
   const { deleteExpense } = useExpensesStore();
 
   return (
@@ -39,4 +39,4 @@ const expense = ({ date, category, description, amount }: ExpenseProps) => {
   )
 }
 
-export default expense
+export default ExpenseEntry

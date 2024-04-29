@@ -1,4 +1,4 @@
-.entry {
+.incomeEntry {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr auto;
     gap: 1rem;

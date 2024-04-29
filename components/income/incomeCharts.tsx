@@ -5,13 +5,6 @@ const IncomeCharts = () => {
 
   const { income } = useIncomeStore();
 
-  if (!income.value.length) {
-    return (
-      <div className="list-container">
-        <p>No income entries</p>
-      </div>
-    )
-  }
   const chartData = [
     ["Category", "Amount"],
     ...income.value.map(({ type, amount }) => [type, amount])

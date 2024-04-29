@@ -68,7 +68,7 @@ select {
   border: solid 1px var(--border-color);
   border-radius: 5px;
   margin: 0.5rem 0;
-  padding: 0.2rem 1rem;
+  padding: 0.8rem 1rem;
   box-sizing: border-box;
   font-size: 100%;
   font-family: inherit;
@@ -88,10 +88,6 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
-}
-
-input {
-  text-align: right;
 }
 
 .align-center {
@@ -124,6 +120,10 @@ input {
   font-size: 1rem;
   margin: 1rem 0;
   padding: 0.5rem 1rem;
+}
+
+.button-create {
+  background-color: #1f883d;
 }
 
 .button-danger {
@@ -182,6 +182,42 @@ input {
 
 .font-size-small {
   font-size: small;
+}
+
+.form-overlay {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.form-overlay input,
+.form-overlay select,
+.form-overlay textarea {
+  width: 100%;
+}
+
+.form-overlay-title {
+  margin-bottom: 2rem;
+}
+
+.form-overlay .form-overlay-content {
+  width: 400px;
+  /* background-color: ghostwhite; */
+  background-color: whitesmoke;
+  padding: 2rem;
+  border-radius: 10px;
 }
 
 .gap-05 {
