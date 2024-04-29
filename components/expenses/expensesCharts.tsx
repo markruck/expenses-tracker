@@ -7,9 +7,17 @@ const ExpensesCharts = () => {
   const { value: { expenses }
   } = getExpenses('all');
 
+  type ExpensesByCategoryProps = {
+    [key: string]: number;
+  }
+  const expensesByCategory = expenses.reduce((acc: ExpensesByCategoryProps, { category, amount }) => {
+    acc[category] = acc[category] ? acc[category] + amount : amount;
+    return acc;
+  }, {});
+
   const chartData = [
     ["Category", "Amount"],
-    ...expenses.map(({ category, amount }) => [category, amount])
+    ...Object.entries(expensesByCategory).map(([category, amount]) => [category, amount])
   ];
 
   return (
