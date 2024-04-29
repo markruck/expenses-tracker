@@ -5,6 +5,7 @@ import { z } from "zod";
 import FormErrorMessage from "../ui/formErrorMessage";
 import { useValdateForm } from "../../lib/useValdateForm";
 import IncomeFormHeader from "./incomeFormHeader";
+import { useSearchParams } from 'next/navigation'
 
 const invalid_type_error = 'Invalid type provided for this field';
 const required_error = 'This field cannot be blank';
@@ -27,9 +28,12 @@ const IncomeFormSchema = z.object({
  * @see useValdateForm
  */
 const IncomeForm = () => {
+    const searchParams = useSearchParams()
+    const shouldShowForm = searchParams.get('showForm') === 'true' || false;
+
     const { findErrors, validate } = useValdateForm(IncomeFormSchema);
     const { addIncome } = useIncomeStore();
-    const [showForm, setShowForm] = React.useState(false);
+    const [showForm, setShowForm] = React.useState(shouldShowForm);
     const [amount, setAmount] = React.useState<number | string>('');
     const [type, setType] = React.useState<string>('');
     const [description, setDescription] = React.useState<string>('');

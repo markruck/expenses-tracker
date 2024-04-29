@@ -265,6 +265,10 @@ input[type=number] {
   margin: 1rem 0;
 }
 
+.margin-right-1 {
+  margin-right: 1rem;
+}
+
 .space-around {
   justify-content: space-around;
 }

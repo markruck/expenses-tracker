@@ -6,6 +6,7 @@ import CategoriesSelector from "../categorieSelector";
 import { useValdateForm } from "../../lib/useValdateForm";
 import FormErrorMessage from "../ui/formErrorMessage";
 import ExpensesFormHeader from "./expensesFormHeader";
+import { useSearchParams } from "next/navigation";
 
 
 const invalid_type_error = 'Invalid type provided for this field';
@@ -25,8 +26,12 @@ const ExpensesFormSchema = z.object({
 });
 
 const ExpensesForm = () => {
-  const { validate, findErrors } = useValdateForm(ExpensesFormSchema);
+  const searchParams = useSearchParams()
+  const shouldShowForm = searchParams.get('showForm') === 'true' || false;
+
+  const { findErrors, validate } = useValdateForm(ExpensesFormSchema);
   const { addExpense } = useExpensesStore();
+  const [showForm, setShowForm] = React.useState(shouldShowForm);
   const [date, setDate] = React.useState(new Date());
   const [amount, setAmount] = React.useState<number | string>('');
   const [category, setCategory] = React.useState<string>('all');
@@ -35,8 +40,6 @@ const ExpensesForm = () => {
   const [dateError, setDateError] = React.useState<string[]>([]);
   const [amountError, setAmountError] = React.useState<string[]>([]);
   const [descriptionError, setDescriptionError] = React.useState<string[]>([]);
-
-  const [showForm, setShowForm] = React.useState(false);
 
   const resetForm = () => {
     setAmount('');

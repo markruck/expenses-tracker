@@ -13,13 +13,14 @@ import IncomeEntry from "./incomeEntry";
  * @returns {React.Component} The Income component
  */
 
-const Income = () => {
+const IncomeList = () => {
     const { income, totalIncome, loading } = useIncomeStore();
     if (loading) return <LoadingScreen />
 
     return (
         <>
             <div className="list-container">
+                <h2 className="margin-1-0">Income list</h2>
                 {income.value.map((entry, index) => {
                     return <IncomeEntry key={`income_${index}`} {...entry} index={index} />
                 })}
@@ -32,4 +33,4 @@ const Income = () => {
     );
 }
 
-export default Income;
+export default IncomeList;

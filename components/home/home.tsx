@@ -8,6 +8,7 @@ import { currencyFormatDE } from "@/lib/utils";
 import MonthSelector from "../monthSelector";;
 import HomeCharts from "./homeCharts";
 import LoadingScreen from "../ui/loadingScreen";
+import Link from "next/link";
 
 /** Home component
  * @example
@@ -32,10 +33,17 @@ const Home = ({ session }: { session: Session | null }) => {
 
     return (
       <div className="w-full">
-        <h1 className="align-self-center margin-1-0">Dashborad</h1>
+        <div className="flex flex-1 space-between align-center margin-1-0">
+          <h1 className="align-self-center margin-1-0">Dashborad</h1>
+          <div>
+            <Link href={{ pathname: "/income", query: { showForm: true } }} className="button button-create margin-right-1">New Income</Link>
+            <Link href={"/expenses?showForm=true"} className="button button-create margin-right-1">New Expense</Link>
+          </div>
+        </div>
         <MonthSelector />
         <HomeCharts />
         <div className="list-container">
+          <h2 className="margin-1-0">Summary</h2>
           <div className="flex flex-row space-between list-entry-container">
             <p>Total Income:</p>
             <p>{currencyFormatDE.format(totalIncome)}</p>
