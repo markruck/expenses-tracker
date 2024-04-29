@@ -3,7 +3,6 @@
 import { Expenses, ExpensesForm } from "@/components/expenses";
 import ExpensesCharts from "@/components/expenses/expensesCharts";
 import React from "react";
-import { createPortal } from "react-dom";
 
 /**
  * Expenses page. Returns the Expenses form and the Expenses list.

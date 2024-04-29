@@ -1,23 +1,14 @@
-import Image from 'next/image';
-
-type ExpensesFormHeaderProps = {
-  showForm: boolean;
-  setShowForm: (showForm: boolean) => void;
-}
 /**
  * A header for the expenses form
  * @example
  * <ExpensesFormHeader />
  */
 
-const ExpensesFormHeader = ({ showForm, setShowForm }: ExpensesFormHeaderProps) => {
+const ExpensesFormHeader = ({ setShowForm }: { setShowForm: (showForm: boolean) => void }) => {
   return (
     <div className="flex flex-1 space-between align-center margin-1-0">
       <h1>Expenses</h1>
-      <div className="cursor-pointer" onClick={() => setShowForm(!showForm)}>
-        <button onClick={() => setShowForm(!showForm)} className='button button-create'>New Expense</button>
-        {/* <Image alt="Add new income" title="Add new expense" src="/assets/images/addition-color-outline-icon.svg" width={24} height={24} /> */}
-      </div>
+      <button onClick={() => setShowForm(true)} className='button button-create'>New Expense</button>
     </div>
   );
 }

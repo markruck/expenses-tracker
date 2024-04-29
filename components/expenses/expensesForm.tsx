@@ -63,7 +63,7 @@ const ExpensesForm = () => {
 
   return (
     <div className="margin-1-0">
-      <ExpensesFormHeader showForm={showForm} setShowForm={() => setShowForm(!showForm)} />
+      <ExpensesFormHeader setShowForm={() => setShowForm(true)} />
 
       {showForm ? <form className="form-overlay" onSubmit={handleSubmit} onClick={(e) => {
         resetForm()
