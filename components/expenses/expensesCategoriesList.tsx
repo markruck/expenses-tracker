@@ -1,21 +1,21 @@
 import ExpenseCategoryEntry from "./expensesCategoryEntry"
+import type { ExpenseProps } from "@/lib/stores/expensesStore"
 
 type ExpenseCategoriesProps = {
-  categories: { value: string[] }
-  expenses: {
-    date: Date
-    amount: number
-    category: string
-    description: string
-  }[]
+  categories: {
+    value: string[]
+  }
+  expenses: ExpenseProps[]
 }
 
 /**
- * ExpenseCategories component
+ * ExpenseCategoriesList component. Returns a list of expenses by category
  * @example
- * <ExpenseCategories categories={{ value: ["Groceries", "Rent"] }} expenses={[{ date: new Date(), amount: 100, category: "Groceries", description: "Some description", index: 1 }]} />
- * @param {object} categories - The categories object
- * @param {object[]} expenses - The expenses array
+ * <ExpenseCategoriesList categories={{ value: ['Groceries', 'Rent'] }} expenses={[{ date: new Date(), amount: 100, category: "Groceries", description: "Some description", index: 1 }]} />
+ * @param {object} props - The props for the component
+ * @param {object} props.categories - The categories object
+ * @param {object[]} props.expenses - The expenses array
+ * @param {string[]} props.categories.value - The categories array
  */
 
 const ExpenseCategoriesList = ({ categories, expenses }: ExpenseCategoriesProps) => {

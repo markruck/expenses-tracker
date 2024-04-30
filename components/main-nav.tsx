@@ -9,7 +9,6 @@ import { usePathname } from 'next/navigation'
  * The main navigation component
  * @example
  * <MainNav />
- * @returns {React.Component} The MainNav component
  */
 
 const MainNav = () => {

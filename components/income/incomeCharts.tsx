@@ -1,16 +1,20 @@
 import { useIncomeStore } from "@/lib/stores/incomeStore";
 import ChartComponent from "../ui/chart"
 
+/**
+ * IncomeCharts. Returns the charts for the income page
+ * @example
+ * <IncomeCharts />
+ */
+
 const IncomeCharts = () => {
   const { getIncome } = useIncomeStore();
   const { value: { income } } = getIncome();
-  console.log(income);
+
   const chartData = [
     ["Category", "Amount"],
     ...income.map(({ type, amount }) => [type, amount])
   ];
-
-  console.log(chartData);
 
   return (
     <div className="flex flex-1 flex-row space-between">

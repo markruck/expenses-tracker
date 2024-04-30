@@ -10,9 +10,6 @@ import { useSearchParams } from 'next/navigation'
 const invalid_type_error = 'Invalid type provided for this field';
 const required_error = 'This field cannot be blank';
 
-/**
- * A schema to validate the income form
- */
 const IncomeFormSchema = z.object({
     amount: z.coerce.number({ invalid_type_error, required_error }).positive(),
     type: z.enum(['main', 'other'], { invalid_type_error, required_error }),
@@ -20,12 +17,10 @@ const IncomeFormSchema = z.object({
 });
 
 /**
- * A form to add new income
+ * A collapsible form to add new income
  * @example
  * <IncomeForm />
- * @see IncomeFormHeader
- * @see FormErrorMessage
- * @see useValdateForm
+ * @see IncomeFormSchema A schema is needed in the component
  */
 const IncomeForm = () => {
     const searchParams = useSearchParams()

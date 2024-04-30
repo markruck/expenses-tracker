@@ -3,29 +3,21 @@ import { currencyFormatDE } from "@/lib/utils"
 import styles from "./expenses.module.css";
 import Image from "next/image";
 import trashIcon from "@/public/assets/images/trash-outline-icon.svg";
-
-type ExpenseProps = {
-  date: Date;
-  category: string;
-  description: string;
-  amount: number;
-}
+import { ExpenseProps } from "@/lib/stores/expensesStore";
 
 /**
  * A single expense entry
  * @example
- * <Expense date={new Date()} category="Groceries" description="Some description" amount={100} index={1} />
- * @param {Date} date - The date of the expense
- * @param {string} category - The category of the expense
- * @param {string} description - The description of the expense
- * @param {number} amount - The amount of the expense
- * @param {number} index - The index of the expense
- * @returns {React.Component} The Expense component
+ * <Expense date={new Date()} category="Groceries" description="Some description" amount={100} />
+ * @param {ExpenseProps} props - The props for the component
+ * @param {Date} props.date - The date of the expense
+ * @param {string} props.category - The category of the expense
+ * @param {string} props.description - The description of the expense
+ * @param {number} props.amount - The amount of the expense
  */
 
 const ExpenseEntry = ({ date, category, description, amount }: ExpenseProps) => {
   const { deleteExpense } = useExpensesStore();
-
   return (
     <div className={"list-entry-container cursor-initial"}>
       <div className={styles.entry}>

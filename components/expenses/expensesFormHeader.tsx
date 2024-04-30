@@ -1,7 +1,9 @@
 /**
- * A header for the expenses form
+ * This file is responsible for rendering the header of the expenses form.
  * @example
- * <ExpensesFormHeader />
+ * <ExpensesFormHeader setShowForm={() => setShowForm(true)} />
+ * @param {object} props - The props for the component
+ * @param {function} props.setShowForm - The function to set the showForm state
  */
 
 const ExpensesFormHeader = ({ setShowForm }: { setShowForm: (showForm: boolean) => void }) => {

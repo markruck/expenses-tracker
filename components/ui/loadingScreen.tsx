@@ -1,13 +1,10 @@
-// A loading screen to show while loading
-
 import React from "react";
 import styles from "./loadingScreen.module.css";
 
 /**
- * A loading screen to show while loading
+ * A loading screen to show while loading. Shows a spinner
  * @example
  * <LoadingScreen />
- * @returns {React.Component} The LoadingScreen component
  */
 
 const LoadingScreen = () => {

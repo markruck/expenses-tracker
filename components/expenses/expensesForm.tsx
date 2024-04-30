@@ -12,18 +12,18 @@ import { useSearchParams } from "next/navigation";
 const invalid_type_error = 'Invalid type provided for this field';
 const required_error = 'This field cannot be blank';
 
+const ExpensesFormSchema = z.object({
+  amount: z.coerce.number({ invalid_type_error, required_error }).positive(),
+  category: z.string({ invalid_type_error }),
+  description: z.string({ invalid_type_error }),
+});
+
 /**
  * A collapsible form to add new expenses
  * @example
  * <ExpensesForm />
- * @see CategoriesSelector
+ * @see ExpensesFormSchema A schema is needed in the component
  */
-
-const ExpensesFormSchema = z.object({
-  amount: z.coerce.number({ invalid_type_error, required_error }).positive(),
-  category: z.string({ invalid_type_error: 'Invalid type provided for this field' }),
-  description: z.string({ invalid_type_error: 'Invalid type provided for this field' }),
-});
 
 const ExpensesForm = () => {
   const searchParams = useSearchParams()

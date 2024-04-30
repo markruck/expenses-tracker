@@ -14,7 +14,6 @@ import { SignIn, SignOut } from "./auth-components";
  * User button component
  * @example
  * <UserButton />
- * @returns {React.Component} The UserButton component
  */
 
 export default async function UserButton() {
