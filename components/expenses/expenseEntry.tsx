@@ -18,7 +18,6 @@ import { ExpenseProps } from "@/lib/stores/expensesStore";
 
 const ExpenseEntry = ({ date, category, description, amount }: ExpenseProps) => {
   const { deleteExpense } = useExpensesStore();
-  console.log(date)
   return (
     <div className={"list-entry-container cursor-initial"}>
       <div className={styles.entry}>
