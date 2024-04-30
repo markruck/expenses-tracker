@@ -11,11 +11,10 @@ export const months = [
 const month = signal(new Date().getMonth());
 
 /**
- * Month store
+ * Month store. Provides the month signal and a setter function
  * @example
  * const { month, setMonth } = useMonthStore();
- * @returns {object} The month signal
- * @returns {function} The setMonth function
+ * @returns An object with the month signal and a setter function { month, setMonth }
  */
 
 export const useMonthStore = () => {

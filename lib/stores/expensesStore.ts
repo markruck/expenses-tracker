@@ -17,10 +17,6 @@ export const expenses = signal<ExpenseProps[] | []>([]);
  * Expenses store. Provides functions to add and delete expenses. Handles storing and getting the expenses from the local storage
  * @example
  * const { getExpenses, addExpense, deleteExpense } = useExpensesStore();
- * @returns {function} The getExpenses function
- * @returns {function} The addExpense function
- * @returns {function} The deleteExpense function
- * @returns {boolean} The loading state
  */
 
 export const useExpensesStore = () => {
@@ -33,11 +29,29 @@ export const useExpensesStore = () => {
     setLoading(false);
   }, []);
 
+  /**
+   * Add an expense
+   * @param {object} value The expense object
+   * @param {Date} value.date The date of the expense
+   * @param {string} value.category The category of the expense
+   * @param {number} value.amount The amount of the expense
+   * @example
+   * addExpense({ date: new Date(), category: 'Groceries', amount: 100 })
+   */
   const addExpense = (value: ExpenseProps) => {
     expenses.value = [...expenses.value, value];
     setStoredValue('expenses', expenses.value);
   }
 
+  /**
+   * Delete an expense
+   * @param {object} value The expense object
+   * @param {Date} value.date The date of the expense
+   * @param {string} value.category The category of the expense
+   * @param {number} value.amount The amount of the expense
+   * @example
+   * deleteExpense({ date: new Date(), category: 'Groceries', amount: 100 })
+   */
   const deleteExpense = ({ date, category, amount }: Partial<ExpenseProps>) => {
     expenses.value = expenses.value.filter((entry, index) => {
       return !(entry.date === date && entry.category === category && entry.amount === amount)
@@ -45,11 +59,21 @@ export const useExpensesStore = () => {
     setStoredValue('expenses', expenses.value);
   }
 
+  /**
+   * Get the expenses
+   * @param {string} category The category of the expense
+   * @returns {object} The expenses array
+   * @example
+   * const { expenses, totalExpenses } = getExpenses('Groceries')
+   * const { expenses, totalExpenses } = getExpenses()
+   */
   const getExpenses = (category?: string) => {
     return computed(() => {
       const currentExpenses = expenses.value.filter((entry) => {
         const expenseDate = new Date(entry.date);
         const currentYear = new Date().getFullYear();
+
+        entry.date = new Date(entry.date);
 
         if (category === undefined || category === 'all') {
           return expenseDate.getMonth() === month.value;

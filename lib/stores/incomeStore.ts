@@ -15,11 +15,8 @@ export const income = signal<IncomeProps[] | []>([]);
 /**
  * Income store. Provides functions to add and delete income. Handles storing and getting the income from the local storage
  * @example
- * const { getIncome, addIncome, deleteIncome } = useIncomeStore();
- * @returns {function} The getIncome function
- * @returns {function} The addIncome function
- * @returns {function} The deleteIncome function
- * @returns {boolean} The loading state
+ * const { getIncome, addIncome, deleteIncome, loading } = useIncomeStore();
+ * @returns An object with the getIncome, addIncome, deleteIncome and loading properties
  */
 
 export const useIncomeStore = () => {
@@ -32,17 +29,43 @@ export const useIncomeStore = () => {
         setLoading(false);
     }, []);
 
+    /**
+     * Add an income
+     * @param {object} value The income object
+     * @param {Date} value.date The date of the income
+     * @param {string} value.type The type of the income
+     * @param {number} value.amount The amount of the income
+     * @param {string} value.description The description of the income
+     * @example
+     * addIncome({ date: new Date(), type: 'main', amount: 100, description: 'Salary' })
+     */
     const addIncome = (value: IncomeProps) => {
         income.value = [...income.value, value];
         setStoredValue('income', income.value);
     }
 
+    /**
+     * Delete an income
+     * @param {object} value The income object
+     * @param {Date} value.date The date of the income
+     * @param {string} value.type The type of the income
+     * @param {number} value.amount The amount of the income
+     * @example
+     * deleteIncome({ date: new Date(), type: 'main', amount: 100 })
+     */
     const deleteIncome = ({ date, type, amount }: Partial<IncomeProps>) => {
         income.value = income.value.filter((entry) => {
             return !(entry.date === date && entry.type === type && entry.amount === amount)
         });
         setStoredValue('income', income.value);
     }
+
+    /**
+     * Get the income for the selected month
+     * @returns An object with the income and the total income for the selected month
+     * @example
+     * const { income, totalIncome } = getIncome();
+    */
 
     const getIncome = () => {
         return computed(() => {

@@ -8,7 +8,7 @@ import { ZodError, z } from "zod";
  * @example
  * const { errors, findErrors, validate } = useValdateForm(IncomeFormSchema);
  * @see IncomeForm
-
+ * @see ExpensesForm
  */
 export const useValdateForm = (schema: z.ZodType<any, any>) => {
   const [errors, setErrors] = React.useState<{ path: (string | number)[]; message: string; }[]>([]);

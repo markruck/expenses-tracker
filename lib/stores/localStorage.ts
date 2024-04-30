@@ -2,11 +2,13 @@ type LocalStorageProps = (key: string, defaultValue: any) => any;
 
 /**
  * A custom hook to get data from local storage with a getter and setter
- * @returns {Function} - getStoredValue(key, defaultValue) - A getter function
- * @returns {Function} - setStoredValue - A setter function
+ * @returns - getStoredValue(key, defaultValue) - A getter function
+ * @returns - setStoredValue - A setter function
  * @example 
  * const { getStoredValue, setStoredValue } = useLocalStorage();
+ * 
  * const storedValue = getStoredValue('key', defaultValue);
+ * 
  * setStoredValue('key', value);
  */
 

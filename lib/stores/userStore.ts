@@ -6,10 +6,10 @@ const user = signal<null | User>(null);
 
 /**
  * User store for managing user state
+ * @returns The user object
+ * @returns The setUser function
  * @example
  * const { user, setUser } = useUserStore();
- * @returns {object} The user object
- * @returns {function} The setUser function
  */
 
 export const useUserStore = () => {
