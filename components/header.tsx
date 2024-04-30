@@ -6,7 +6,6 @@ import styles from "./header.module.css";
  * The main header component
  * @example
  * <Header />
- * @returns {React.Component} The Header component
  */
 export default function Header() {
   return (

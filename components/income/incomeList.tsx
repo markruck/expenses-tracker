@@ -12,7 +12,6 @@ import IncomeCharts from "./incomeCharts";
  * Income component. Returns a list of income entries
  * @example
  * <Income />
- * @returns {React.Component} The Income component
  */
 
 const IncomeList = () => {

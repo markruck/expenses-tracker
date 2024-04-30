@@ -64,7 +64,7 @@ export const useExpensesStore = () => {
 
       if (currentExpenses.length === 0) {
         return {
-          expenses: [{ date: null, amount: 0, category: '', description: '' }],
+          expenses: [{ date: new Date(), amount: 0, category: '', description: '' }],
           totalExpenses: 0
         };
       }

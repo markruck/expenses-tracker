@@ -1,6 +1,12 @@
 import { useIncomeStore } from "@/lib/stores/incomeStore";
 import ChartComponent from "../ui/chart"
 
+/**
+ * IncomeCharts. Returns the charts for the income page
+ * @example
+ * <IncomeCharts />
+ */
+
 const IncomeCharts = () => {
   const { getIncome } = useIncomeStore();
   const { value: { income } } = getIncome();

@@ -4,22 +4,18 @@ import { currencyFormatDE } from "../../lib/utils";
 import ExpenseEntry from "./expenseEntry";
 import styles from "./expenses.module.css";
 
-type ExpensePorps = {
-  date: Date;
-  amount: number;
-  category: string;
-  description: string;
-}
+import { ExpenseProps } from "@/lib/stores/expensesStore";
 
 /**
- * ExpenseCategory component. Returns a single expense category with a colapsed list of expenses
+ * A single expense category entry
  * @example
- * <ExpenseCategory category="Groceries" expenses={[{ date: new Date(), amount: 100, category: "Groceries", description: "Some description", index: 1 }]} />
- * @param {string} category - The category of the expense
- * @param {object[]} expenses - The expenses array
+ * <ExpenseCategoryEntry category="Groceries" expenses={[{ date: new Date(), amount: 100, category: "Groceries", description: "Some description", index: 1 }]} />
+ * @param {object} props - The props for the component
+ * @param {string} props.category - The category of the expense
+ * @param {object[]} props.expenses - The expenses array
  */
 
-const ExpenseCategoryEntry = ({ category, expenses }: { category: string, expenses: ExpensePorps[] }) => {
+const ExpenseCategoryEntry = ({ category, expenses }: { category: string, expenses: ExpenseProps[] }) => {
 
   const [isCollapsed, setIsCollapsed] = useState(true);
   const totalExpensesByCategory = expenses.reduce((a, b) => a + b.amount, 0);

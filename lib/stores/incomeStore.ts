@@ -56,7 +56,7 @@ export const useIncomeStore = () => {
             });
 
             if (currentIncome.length === 0) {
-                return { income: [{ date: null, amount: 0, type: '', description: '' }], totalIncome: 0 };
+                return { income: [{ date: new Date(), amount: 0, type: '', description: '' }], totalIncome: 0 };
             }
 
             return {

@@ -12,7 +12,6 @@ import ExpensesCharts from "./expensesCharts";
  * Expenses component. Returns a list of expenses by category
  * @example
  * <Expenses />
- * @returns {React.Component} The Expenses component
  */
 
 const Expenses = () => {

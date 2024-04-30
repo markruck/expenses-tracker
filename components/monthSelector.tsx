@@ -4,9 +4,7 @@ import { months } from "@/lib/stores/monthStore";
 /**
  * MonthSelector component
  * @example
- * <MonthSelector month={0} setMonth={setMonth} />
- * @param {number} month - The month number
- * @param {function} setMonth - The setMonth function
+ * <MonthSelector />
  */
 
 const MonthSelector = () => {

@@ -10,17 +10,14 @@ type CategoriesSelectorProps = {
 
 /**
  * Component to select a category from the available categories
- * @param category - The selected category
- * @param setCategory - Function to set the selected category
- * @param row - If the component should be displayed in a row
- * @param showAll - If the component should show all categories
- * @param withLabel - If the component should have a label
- * @returns
  * @example
- * <CategoriesSelector category={category} setCategory={setCategory} row showAll withLabel />
- * @example
- * <CategoriesSelector category={category} setCategory={setCategory} />
- * 
+ * <CategoriesSelector category="Groceries" setCategory={setCategory} row showAll withLabel />
+ * @param {object} props - The props for the component
+ * @param {string} props.category - The category to select
+ * @param {function} props.setCategory - The function to set the category
+ * @param {boolean} props.row - If the selector should be displayed in a row
+ * @param {boolean} props.showAll - If the selector should show all categories
+ * @param {boolean} props.withLabel - If the selector should have a label
  */
 
 const CategoriesSelector = ({ category, setCategory, row, showAll, withLabel }: CategoriesSelectorProps) => {

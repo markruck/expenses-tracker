@@ -1,5 +1,7 @@
 /**
  * A header for the income form
+ * @param {object} props - The props for the component
+ * @param {function} props.setShowForm - The function to set the showForm state
  * @example
  * <IncomeFormHeader />
  */

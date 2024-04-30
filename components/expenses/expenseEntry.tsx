@@ -3,13 +3,7 @@ import { currencyFormatDE } from "@/lib/utils"
 import styles from "./expenses.module.css";
 import Image from "next/image";
 import trashIcon from "@/public/assets/images/trash-outline-icon.svg";
-
-type ExpenseProps = {
-  date: Date;
-  category: string;
-  description: string;
-  amount: number;
-}
+import { ExpenseProps } from "@/lib/stores/expensesStore";
 
 /**
  * A single expense entry

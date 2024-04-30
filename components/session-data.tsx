@@ -7,8 +7,8 @@ import React from "react";
  * SessionData component for the app route
  * @example
  * <SessionData session={session} />
- * @param {Session} session - The session object
- * @returns {React.Component} The SessionData component
+ * @param {Object} props - The props for the component
+ * @param {Session} props.session - The session object
  */
 
 export default function SessionData({ session }: { session: Session | null }) {

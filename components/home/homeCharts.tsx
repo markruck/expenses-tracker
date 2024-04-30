@@ -2,6 +2,12 @@ import { useIncomeStore } from "@/lib/stores/incomeStore";
 import ChartComponent from "../ui/chart"
 import { useExpensesStore } from "@/lib/stores/expensesStore";
 
+/**
+ * HomeCharts. Returns the charts for the home page
+ * @example
+ * <HomeCharts />
+ */
+
 const HomeCharts = () => {
   const { getIncome } = useIncomeStore();
   const { getExpenses } = useExpensesStore();

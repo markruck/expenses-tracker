@@ -5,6 +5,17 @@ import { currencyFormatDE } from "@/lib/utils";
 import styles from "./incomeEntry.module.css";
 import { IncomeProps } from "@/lib/stores/incomeStore";
 
+/**
+ * IncomeEntry. A single income entry
+ * @example
+ * <IncomeEntry date={new Date()} type="salary" description="Some description" amount={100} />
+ * @param {IncomeProps} props - The props for the component
+ * @param {Date} props.date - The date of the income
+ * @param {string} props.type - The type of the income
+ * @param {string} props.description - The description of the income
+ * @param {number} props.amount - The amount of the income
+ */
+
 const IncomeEntry = ({ date, type, description, amount }: IncomeProps) => {
   const { deleteIncome } = useIncomeStore();
 

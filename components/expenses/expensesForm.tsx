@@ -16,7 +16,6 @@ const required_error = 'This field cannot be blank';
  * A collapsible form to add new expenses
  * @example
  * <ExpensesForm />
- * @see CategoriesSelector
  */
 
 const ExpensesFormSchema = z.object({

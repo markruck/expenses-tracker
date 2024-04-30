@@ -13,8 +13,8 @@ import Link from "next/link";
 /** Home component
  * @example
  * <Home session={session} />
- * @param {Session} session - The session object
- * @returns {React.Component} The Home component
+ * @param {Object} props - The props for the component
+ * @param {Session} props.session - The session object
  */
 
 const Home = ({ session }: { session: Session | null }) => {
