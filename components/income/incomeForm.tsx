@@ -34,10 +34,12 @@ const IncomeForm = () => {
     const { findErrors, validate } = useValdateForm(IncomeFormSchema);
     const { addIncome } = useIncomeStore();
     const [showForm, setShowForm] = React.useState(shouldShowForm);
+    const [date, setDate] = React.useState(new Date());
     const [amount, setAmount] = React.useState<number | string>('');
     const [type, setType] = React.useState<string>('');
     const [description, setDescription] = React.useState<string>('');
 
+    const [dateError, setDateError] = React.useState<string[]>([]);
     const [amountError, setAmountError] = React.useState<string[]>([]);
     const [typeError, setTypeError] = React.useState<string[]>([]);
     const [descriptionError, setDescriptionError] = React.useState<string[]>([]);
@@ -45,12 +47,13 @@ const IncomeForm = () => {
     const handleSubmit = (e: SyntheticEvent) => {
         e.preventDefault();
         if (!validate({ amount, type, description })) {
+            setDateError(findErrors('date'));
             setAmountError(findErrors('amount'));
             setTypeError(findErrors('type'));
             setDescriptionError(findErrors('description'));
             return;
         }
-        addIncome({ amount: amount as number, type, description });
+        addIncome({ date, amount: amount as number, type, description });
         resetForm();
     }
 
@@ -74,13 +77,17 @@ const IncomeForm = () => {
                 }}>
                     <div className="form-overlay-content" onClick={(e) => { e.stopPropagation() }}>
                         <h2 className="text-center form-overlay-title">Add new Income</h2>
+                        <div className="flex space-between align-center">
+                            <input placeholder="Enter a date" type="date" id="date" name="date" required={true} value={date.toISOString().substring(0, 10)} onChange={(e) => { setDate(new Date(e.target.value)) }} />
+                        </div>
+                        {dateError.map((error, index) => <FormErrorMessage key={`dateError_${index}`} error={error} />)}
                         <div>
                             <input placeholder="Amount" type="number" id="amount" name="amount" required value={amount} onChange={(e) => { setAmount(e.target.valueAsNumber) }} />
                         </div>
                         {amountError.map((error, index) => <FormErrorMessage key={`amountError_${index}`} error={error} />)}
 
                         <div className="flex space-between align-center">
-                            <select name="type" onChange={(e) => setType(e.target.value)} required={true} defaultValue="" value={type}>
+                            <select name="type" onChange={(e) => setType(e.target.value)} required={true} value={type}>
                                 <option disabled value="">Select Category</option>
                                 <option value="main">Main</option>
                                 <option value="other">Other</option>

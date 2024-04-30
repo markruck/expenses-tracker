@@ -41,7 +41,6 @@ export const useExpensesStore = () => {
   const deleteExpense = ({ date, category, amount }: Partial<ExpenseProps>) => {
     expenses.value = expenses.value.filter((entry, index) => {
       if (entry.date === date && entry.category === category && entry.amount === amount) {
-        console.log('Deleting entry:', entry);
         return false;
       }
       return true;
@@ -67,5 +66,5 @@ export const useExpensesStore = () => {
     })
   }
 
-  return { expenses, addExpense, deleteExpense, getExpenses, loading };
+  return { addExpense, deleteExpense, getExpenses, loading };
 }

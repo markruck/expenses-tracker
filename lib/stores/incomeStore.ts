@@ -1,8 +1,10 @@
 import React from "react";
-import { signal } from "@preact/signals-react";
+import { computed, signal } from "@preact/signals-react";
 import useLocalStorage from "./localStorage";
+import { useMonthStore } from "./monthStore";
 
 export type IncomeProps = {
+    date: Date;
     amount: number;
     type: string;
     description: string;
@@ -20,6 +22,7 @@ export const income = signal<IncomeProps[] | []>([]);
  */
 
 export const useIncomeStore = () => {
+    const { month } = useMonthStore();
     const { getStoredValue, setStoredValue } = useLocalStorage();
     const [loading, setLoading] = React.useState(true);
 
@@ -33,12 +36,39 @@ export const useIncomeStore = () => {
         setStoredValue('income', income.value);
     }
 
-    const deleteIncome = (index: number) => {
-        income.value = income.value.filter((_, i) => i !== index);
+    const deleteIncome = ({ date, type, amount }: Partial<IncomeProps>) => {
+        income.value = income.value.filter((entry, index) => {
+            if (entry.date === date && entry.type === type && entry.amount === amount) {
+                return false;
+            }
+            return true;
+        });
         setStoredValue('income', income.value);
     }
+    const totalIcome = (income: IncomeProps[]) => income.reduce((a, b) => a + (b.amount), 0);
 
-    const totalIncome = income.value.reduce((a, b) => a + (b.amount), 0);
+    const getIncome = () => {
+        return computed(() => {
+            const currentMonth = month || new Date().getMonth();
+            const currentYear = new Date().getFullYear();
+            const currentIncome = income.value.filter((i) => {
+                const incomeDate = new Date(i.date);
+                return incomeDate.getMonth() === currentMonth.value && incomeDate.getFullYear() === currentYear;
+            });
 
-    return { income, addIncome, deleteIncome, totalIncome, loading };
+            if (currentIncome.length > 0) {
+                return { income: currentIncome, totalIncome: totalIcome(currentIncome) };
+            }
+
+            const previousIncome = income.value.filter((i) => {
+                const incomeDate = new Date(i.date);
+                return incomeDate.getMonth() < currentMonth.value && incomeDate.getFullYear() === currentYear;
+            });
+
+            return { income: previousIncome, totalIncome: totalIcome(previousIncome) };
+        });
+    }
+
+
+    return { getIncome, addIncome, deleteIncome, loading };
 }
