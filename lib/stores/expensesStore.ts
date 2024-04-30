@@ -14,13 +14,13 @@ export type ExpenseProps = {
 export const expenses = signal<ExpenseProps[] | []>([]);
 
 /**
- * Expenses store. Sets the expenses from local storage and provides functions to add and delete expenses
+ * Expenses store. Provides functions to add and delete expenses. Handles storing and getting the expenses from the local storage
  * @example
- * const { expenses, addExpense, deleteExpense, getExpenses } = useExpensesStore();
- * @returns {object} The expenses array
+ * const { getExpenses, addExpense, deleteExpense } = useExpensesStore();
+ * @returns {function} The getExpenses function
  * @returns {function} The addExpense function
  * @returns {function} The deleteExpense function
- * @returns {function} The getExpenses function
+ * @returns {boolean} The loading state
  */
 
 export const useExpensesStore = () => {
@@ -40,28 +40,38 @@ export const useExpensesStore = () => {
 
   const deleteExpense = ({ date, category, amount }: Partial<ExpenseProps>) => {
     expenses.value = expenses.value.filter((entry, index) => {
-      if (entry.date === date && entry.category === category && entry.amount === amount) {
-        return false;
-      }
-      return true;
+      return !(entry.date === date && entry.category === category && entry.amount === amount)
     });
     setStoredValue('expenses', expenses.value);
   }
 
-  const totalExpenses = (expenses: ExpenseProps[]) => expenses.reduce((a, b) => a + (b.amount), 0);
-
   const getExpenses = (category?: string) => {
     return computed(() => {
-      const getExpensesByCategoryAndMonth = expenses.value.filter((entry) => {
-        // Check if entry.date is a javascript date object and if not convert it to a date object
-        if (!(entry.date instanceof Date)) entry.date = new Date(entry.date);
-        if (category === undefined || category === 'all') return entry.date.getMonth() === month.value;
-        return entry.category === category && entry.date.getMonth() === month.value
+      const currentExpenses = expenses.value.filter((entry) => {
+        const expenseDate = new Date(entry.date);
+        const currentYear = new Date().getFullYear();
+
+        if (category === undefined || category === 'all') {
+          return expenseDate.getMonth() === month.value;
+        }
+
+        return (
+          entry.category === category
+          && expenseDate.getMonth() === month.value
+          && expenseDate.getFullYear() === currentYear
+        );
       });
-      const totalExpensesByCategoryAndMonth = totalExpenses(getExpensesByCategoryAndMonth);
+
+      if (currentExpenses.length === 0) {
+        return {
+          expenses: [{ date: null, amount: 0, category: '', description: '' }],
+          totalExpenses: 0
+        };
+      }
+
       return {
-        expenses: sortBy(getExpensesByCategoryAndMonth, ['category', 'date']),
-        totalExpenses: totalExpensesByCategoryAndMonth
+        expenses: sortBy(currentExpenses, ['category', 'date']),
+        totalExpenses: currentExpenses.reduce((a, b) => a + (b.amount), 0)
       };
     })
   }
