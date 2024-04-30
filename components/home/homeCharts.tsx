@@ -3,11 +3,13 @@ import ChartComponent from "../ui/chart"
 import { useExpensesStore } from "@/lib/stores/expensesStore";
 
 const HomeCharts = () => {
-  const { income } = useIncomeStore();
+  const { getIncome } = useIncomeStore();
   const { getExpenses } = useExpensesStore();
 
   const { value: { expenses }
   } = getExpenses();
+
+  const { value: { income } } = getIncome();
 
   const chartData = [
     ["Category", "Amount"],
@@ -16,7 +18,7 @@ const HomeCharts = () => {
 
   const incomeChartData = [
     ["Category", "Amount"],
-    ...income.value.map(({ type, amount }) => [type, amount])
+    ...income.map(({ type, amount }) => [type, amount])
   ];
 
   return (

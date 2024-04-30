@@ -2,12 +2,12 @@ import { useIncomeStore } from "@/lib/stores/incomeStore";
 import ChartComponent from "../ui/chart"
 
 const IncomeCharts = () => {
-
-  const { income } = useIncomeStore();
+  const { getIncome } = useIncomeStore();
+  const { value: { income } } = getIncome();
 
   const chartData = [
     ["Category", "Amount"],
-    ...income.value.map(({ type, amount }) => [type, amount])
+    ...income.map(({ type, amount }) => [type, amount])
   ];
 
   return (

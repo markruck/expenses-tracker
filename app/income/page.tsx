@@ -13,7 +13,6 @@ const Page = () => {
     return (
         <>
             <IncomeForm />
-            <IncomeCharts />
             <Income />
         </>
     );

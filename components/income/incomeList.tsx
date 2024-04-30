@@ -5,6 +5,8 @@ import { currencyFormatDE } from "@/lib/utils";
 import LoadingScreen from "../ui/loadingScreen";
 import Link from "next/link";
 import IncomeEntry from "./incomeEntry";
+import MonthSelector from "../monthSelector";
+import IncomeCharts from "./incomeCharts";
 
 /**
  * Income component. Returns a list of income entries
@@ -14,15 +16,19 @@ import IncomeEntry from "./incomeEntry";
  */
 
 const IncomeList = () => {
-    const { income, totalIncome, loading } = useIncomeStore();
+    const { getIncome, loading } = useIncomeStore();
+    const { value: { income, totalIncome } } = getIncome();
+
     if (loading) return <LoadingScreen />
 
     return (
         <>
+            <MonthSelector />
+            <IncomeCharts />
             <div className="list-container">
                 <h2 className="margin-1-0">Income list</h2>
-                {income.value.map((entry, index) => {
-                    return <IncomeEntry key={`income_${index}`} {...entry} index={index} />
+                {income.map((entry, index) => {
+                    return <IncomeEntry key={`income_${index}`} {...entry} />
                 })}
                 <p className="flex flex-end bold margin-1-0">Total Income: {currencyFormatDE.format(totalIncome)}</p>
             </div>

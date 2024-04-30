@@ -5,11 +5,7 @@ import { currencyFormatDE } from "@/lib/utils";
 import styles from "./incomeEntry.module.css";
 import { IncomeProps } from "@/lib/stores/incomeStore";
 
-type IncomeEntryProps = IncomeProps & {
-  index: number;
-}
-
-const IncomeEntry = ({ type, description, amount, index }: IncomeEntryProps) => {
+const IncomeEntry = ({ date, type, description, amount }: IncomeProps) => {
   const { deleteIncome } = useIncomeStore();
 
   return (
@@ -18,7 +14,7 @@ const IncomeEntry = ({ type, description, amount, index }: IncomeEntryProps) => 
         <p className="capitalize">{type} income</p>
         <p className="font-size-small">{description}</p>
         <p className="text-right">{currencyFormatDE.format(amount)}</p>
-        <Image className="cursor-pointer" src={trashIcon} alt="delete" width={16} onClick={() => { deleteIncome(index) }} />
+        <Image className="cursor-pointer" src={trashIcon} alt="delete" width={16} onClick={() => { deleteIncome({ date, type, amount }) }} />
       </div>
     </div>
   )

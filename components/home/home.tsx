@@ -19,12 +19,13 @@ import Link from "next/link";
 
 const Home = ({ session }: { session: Session | null }) => {
   const { setUser } = useUserStore();
-  const { totalIncome, loading: loadinIncome } = useIncomeStore();
+  const { getIncome, loading: loadinIncome } = useIncomeStore();
   const { getExpenses, loading: loadingExpesnes } = useExpensesStore();
 
   const { value: { totalExpenses }
   } = getExpenses();
 
+  const { value: { totalIncome } } = getIncome();
 
   if (loadinIncome || loadingExpesnes) return <LoadingScreen />
 
