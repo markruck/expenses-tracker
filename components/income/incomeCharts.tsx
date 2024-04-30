@@ -4,11 +4,13 @@ import ChartComponent from "../ui/chart"
 const IncomeCharts = () => {
   const { getIncome } = useIncomeStore();
   const { value: { income } } = getIncome();
-
+  console.log(income);
   const chartData = [
     ["Category", "Amount"],
     ...income.map(({ type, amount }) => [type, amount])
   ];
+
+  console.log(chartData);
 
   return (
     <div className="flex flex-1 flex-row space-between">
@@ -21,7 +23,6 @@ const IncomeCharts = () => {
       <div style={{ width: '49.5%' }}>
         <ChartComponent data={chartData} chartType="BarChart" width="100%" height="300px" options={{
           title: "Income by Category",
-          is3D: true,
         }} className="chart" />
       </div>
     </div>
