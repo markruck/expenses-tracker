@@ -9,9 +9,18 @@ const HomeCharts = () => {
   const { value: { expenses } } = getExpenses();
   const { value: { income } } = getIncome();
 
+  type ExpensesByCategoryProps = {
+    [key: string]: number;
+  }
+
+  const expensesByCategory = expenses.reduce((acc: ExpensesByCategoryProps, { category, amount }) => {
+    acc[category] = acc[category] ? acc[category] + amount : amount;
+    return acc;
+  }, {});
+
   const expensesChartData = [
     ["Category", "Amount"],
-    ...expenses.map(({ category, amount }) => [category, amount])
+    ...Object.entries(expensesByCategory).map(([category, amount]) => [category, amount])
   ];
 
   const incomeChartData = [
