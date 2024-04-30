@@ -6,12 +6,10 @@ const HomeCharts = () => {
   const { getIncome } = useIncomeStore();
   const { getExpenses } = useExpensesStore();
 
-  const { value: { expenses }
-  } = getExpenses();
-
+  const { value: { expenses } } = getExpenses();
   const { value: { income } } = getIncome();
 
-  const chartData = [
+  const expensesChartData = [
     ["Category", "Amount"],
     ...expenses.map(({ category, amount }) => [category, amount])
   ];
@@ -24,7 +22,7 @@ const HomeCharts = () => {
   return (
     <div className="flex flex-1 flex-row space-between">
       <div style={{ width: '49.5%' }}>
-        <ChartComponent data={chartData} chartType="PieChart" width="100%" height="300px" options={{
+        <ChartComponent data={expensesChartData} chartType="PieChart" width="100%" height="300px" options={{
           title: "Expenses",
           pieHole: 0.4,
           is3D: false,

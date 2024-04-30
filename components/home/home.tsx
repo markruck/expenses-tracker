@@ -22,9 +22,7 @@ const Home = ({ session }: { session: Session | null }) => {
   const { getIncome, loading: loadinIncome } = useIncomeStore();
   const { getExpenses, loading: loadingExpesnes } = useExpensesStore();
 
-  const { value: { totalExpenses }
-  } = getExpenses();
-
+  const { value: { totalExpenses } } = getExpenses();
   const { value: { totalIncome } } = getIncome();
 
   if (loadinIncome || loadingExpesnes) return <LoadingScreen />
