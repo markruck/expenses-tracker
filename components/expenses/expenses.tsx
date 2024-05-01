@@ -2,7 +2,7 @@ import { useExpensesStore } from "@/lib/stores/expensesStore";
 import React from "react";
 import MonthSelector from "../monthSelector";
 import { useCategoriesStore } from "@/lib/stores/categoriesStore";
-import CategoriesSelector from "../categorieSelector";
+import CategorieSelector from "../categorieSelector";
 import ExpenseCategoriesList from "./expensesCategoriesList";
 import { currencyFormatDE } from "@/lib/utils";
 import LoadingScreen from "../ui/loadingScreen";
@@ -33,7 +33,7 @@ const Expenses = () => {
     <>
       <div className="flex flex-row gap-05">
         <MonthSelector />
-        <CategoriesSelector category={category} setCategory={handleSetCategory} showAll />
+        <CategorieSelector category={category} setCategory={handleSetCategory} showAll />
       </div>
       <ExpensesCharts />
       <div className="list-container">

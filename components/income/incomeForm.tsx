@@ -2,10 +2,12 @@
 import React, { SyntheticEvent } from "react";
 import { useIncomeStore } from "../../lib/stores/incomeStore";
 import { z } from "zod";
-import FormErrorMessage from "../ui/formErrorMessage";
 import { useValdateForm } from "../../lib/useValdateForm";
 import IncomeFormHeader from "./incomeFormHeader";
 import { useSearchParams } from 'next/navigation'
+import FormInput from "../formElements/input";
+import FormTextArea from "../formElements/textArea";
+import FormSelect from "../formElements/select";
 
 const invalid_type_error = 'Invalid type provided for this field';
 const required_error = 'This field cannot be blank';
@@ -72,29 +74,40 @@ const IncomeForm = () => {
                 }}>
                     <div className="form-overlay-content" onClick={(e) => { e.stopPropagation() }}>
                         <h2 className="text-center form-overlay-title">Add new Income</h2>
-                        <div className="flex space-between align-center">
-                            <input placeholder="Enter a date" type="date" id="date" name="date" required={true} value={date.toISOString().substring(0, 10)} onChange={(e) => { setDate(new Date(e.target.value)) }} />
-                        </div>
-                        {dateError.map((error, index) => <FormErrorMessage key={`dateError_${index}`} error={error} />)}
-                        <div>
-                            <input placeholder="Amount" type="number" id="amount" name="amount" required value={amount} onChange={(e) => { setAmount(e.target.valueAsNumber) }} />
-                        </div>
-                        {amountError.map((error, index) => <FormErrorMessage key={`amountError_${index}`} error={error} />)}
+                        <FormInput
+                            error={dateError}
+                            type="date"
+                            required={true}
+                            value={date.toISOString().substring(0, 10)}
+                            onChange={(e) => { setDate(new Date(e.target.value)) }} />
 
-                        <div className="flex space-between align-center">
-                            <select name="type" onChange={(e) => setType(e.target.value)} required={true} value={type}>
-                                <option disabled value="">Select Category</option>
-                                <option value="main">Main</option>
-                                <option value="other">Other</option>
-                                <option value="error">Error</option>
-                            </select>
-                        </div>
-                        {typeError.map((error, index) => <FormErrorMessage key={`typeError_${index}`} error={error} />)}
+                        <FormInput
+                            error={amountError}
+                            placeholder="Amount"
+                            type="number"
+                            required
+                            value={amount}
+                            onChange={(e) => { setAmount(e.target.valueAsNumber) }} />
 
-                        <div className="flex space-between align-center">
-                            <textarea placeholder="Enter a breif description" id="description" name="description" value={description} onChange={(e) => { setDescription(e.target.value) }} />
-                        </div>
-                        {descriptionError.map((error, index) => <FormErrorMessage key={`descriptionError_${index}`} error={error} />)}
+                        <FormSelect
+                            name="type"
+                            onChange={(e) => setType(e.target.value)}
+                            required={true}
+                            value={type}
+                            options={[
+                                { value: '', label: 'Select a type', disabled: true },
+                                { value: 'main', label: 'Main' },
+                                { value: 'other', label: 'Other' },
+                                { value: 'error', label: 'Error' }
+                            ]}
+                            error={typeError}
+                        />
+
+                        <FormTextArea
+                            error={descriptionError}
+                            placeholder="Enter a breif description"
+                            value={description}
+                            onChange={(e) => { setDescription(e.target.value) }} />
 
                         < div className="flex flex-1 justify-center">
                             <button type="submit" className="flex-1 button">Add</button>

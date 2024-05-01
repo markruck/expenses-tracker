@@ -2,12 +2,12 @@
 import React, { SyntheticEvent } from "react";
 import { z } from "zod";
 import { useExpensesStore } from "@/lib/stores/expensesStore";
-import CategoriesSelector from "../categorieSelector";
+import CategorieSelector from "../categorieSelector";
 import { useValdateForm } from "../../lib/useValdateForm";
-import FormErrorMessage from "../ui/formErrorMessage";
 import ExpensesFormHeader from "./expensesFormHeader";
 import { useSearchParams } from "next/navigation";
-
+import FormInput from "../formElements/input";
+import FormTextArea from "../formElements/textArea";
 
 const invalid_type_error = 'Invalid type provided for this field';
 const required_error = 'This field cannot be blank';
@@ -73,22 +73,31 @@ const ExpensesForm = () => {
       }}>
         <div className="form-overlay-content" onClick={(e) => { e.stopPropagation() }}>
           <h2 className="text-center form-overlay-title">Add new Expense</h2>
-          <div className="flex space-between align-center">
-            <input placeholder="Enter a date" type="date" id="date" name="date" required={true} value={date.toISOString().substring(0, 10)} onChange={(e) => { setDate(new Date(e.target.value)) }} />
-          </div>
-          {dateError.map((error, index) => <FormErrorMessage key={`dateError_${index}`} error={error} />)}
+          <FormInput
+            type="date"
+            name="date"
+            required={true}
+            value={date.toISOString().substring(0, 10)}
+            onChange={(e) => { setDate(new Date(e.target.value)) }}
+            error={dateError} />
 
-          <div className="flex space-between align-center">
-            <input placeholder="Amount" type="number" id="amount" name="amount" required={true} value={amount} onChange={(e) => { setAmount(e.target.valueAsNumber) }} />
-          </div>
-          {amountError.map((error, index) => <FormErrorMessage key={`amountError_${index}`} error={error} />)}
+          <FormInput
+            placeholder="Amount"
+            type="number"
+            name="amount"
+            required={true}
+            value={amount}
+            onChange={(e) => { setAmount(e.target.valueAsNumber) }}
+            error={amountError} />
 
-          <CategoriesSelector category={category} setCategory={setCategory} row />
+          <CategorieSelector category={category} setCategory={setCategory} row />
 
-          <div className="flex space-between align-center">
-            <textarea placeholder="Enter a breif description" id="description" name="description" value={description} onChange={(e) => { setDescription(e.target.value) }} />
-          </div>
-          {descriptionError.map((error, index) => <FormErrorMessage key={`descriptionError_${index}`} error={error} />)}
+          <FormTextArea
+            name="description"
+            placeholder="Enter a breif description"
+            value={description}
+            onChange={(e) => { setDescription(e.target.value) }}
+            error={descriptionError} />
 
           <div className="flex flex-1 justify-center margin-1-0">
             <button type="submit" className="flex-1 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">Add</button>
