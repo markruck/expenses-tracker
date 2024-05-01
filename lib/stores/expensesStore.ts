@@ -73,6 +73,7 @@ export const useExpensesStore = () => {
         const expenseDate = new Date(entry.date);
         const currentYear = new Date().getFullYear();
 
+        // The date is stored as a string in the local storage, it is not a Date object. We need to convert it to a Date object
         entry.date = new Date(entry.date);
 
         if (category === undefined || category === 'all') {

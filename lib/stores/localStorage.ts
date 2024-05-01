@@ -15,8 +15,8 @@ type LocalStorageProps = (key: string, defaultValue: any) => any;
 const useLocalStorage = () => {
   /**
    * Getter function to get a stored value from local storage
-   * @param key 
-   * @param defaultValue 
+   * @param key the name of the key
+   * @param defaultValue the default value to return if the key is not found
    * @returns the stored value or the default value
    * @example 
    * const { getStoredValue, setStoredValue } = useLocalStorage();
@@ -37,10 +37,10 @@ const useLocalStorage = () => {
 
   /**
    * Setter function to set a value in local storage
-   * @param key 
-   * @param value 
+   * @param key the name of the key
+   * @param value the value to store
    * @example 
-   * const { getStoredValue, setStoredValue } = useLocalStorage();
+   * const { setStoredValue } = useLocalStorage();
    * setStoredValue('key', value);
    */
   const setStoredValue: LocalStorageProps = (key, value) => {

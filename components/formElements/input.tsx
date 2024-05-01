@@ -4,6 +4,15 @@ type FormInputProps = {
   error: string[];
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
+/**
+ * FormInput component
+ * @param {FormInputProps} props - The input props
+ * @param {string[]} props.name - The name of the input
+ * @param {string[]} props.error - An array of error messages
+ * @example
+ * <FormInput />
+ */
+
 const FormInput = (props: FormInputProps) => {
   return (
     <>

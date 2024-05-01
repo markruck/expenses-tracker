@@ -5,6 +5,15 @@ type FormSelectProps = {
   error?: string[];
 } & React.SelectHTMLAttributes<HTMLSelectElement>;
 
+/**
+ * FormSelect component
+ * @param {FormSelectProps} props - The select props
+ * @param {string[]} props.name - The name of the select
+ * @param {string[]} props.error - An array of error messages
+ * @example
+ * <FormSelect />
+ */
+
 const FormSelect = (props: FormSelectProps) => {
   const { options, error, ...selectProps } = props;
   return (

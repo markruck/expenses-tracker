@@ -73,6 +73,8 @@ export const useIncomeStore = () => {
             const currentYear = new Date().getFullYear();
 
             const currentIncome = income.value.filter((entry) => {
+
+                // The date is stored as a string in the local storage, it is not a Date object. We need to convert it to a Date object
                 const incomeDate = new Date(entry.date);
                 return incomeDate.getMonth() === currentMonth.value
                     && incomeDate.getFullYear() === currentYear;
