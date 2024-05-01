@@ -1,6 +1,6 @@
 import { useCategoriesStore } from "@/lib/stores/categoriesStore";
 
-type CategoriesSelectorProps = {
+type CategorieSelectorProps = {
   category: string;
   setCategory: (category: string) => void;
   row?: boolean;
@@ -11,7 +11,7 @@ type CategoriesSelectorProps = {
 /**
  * Component to select a category from the available categories
  * @example
- * <CategoriesSelector category="Groceries" setCategory={setCategory} row showAll withLabel />
+ * <CategorieSelector category="Groceries" setCategory={setCategory} row showAll withLabel />
  * @param {object} props - The props for the component
  * @param {string} props.category - The category to select
  * @param {function} props.setCategory - The function to set the category
@@ -20,7 +20,7 @@ type CategoriesSelectorProps = {
  * @param {boolean} props.withLabel - If the selector should have a label
  */
 
-const CategoriesSelector = ({ category, setCategory, row, showAll, withLabel }: CategoriesSelectorProps) => {
+const CategorieSelector = ({ category, setCategory, row, showAll, withLabel }: CategorieSelectorProps) => {
 
   const { categories } = useCategoriesStore();
   const classes = row ? 'flex flex-row space-between' : 'flex flex-col space-between';
@@ -39,4 +39,4 @@ const CategoriesSelector = ({ category, setCategory, row, showAll, withLabel }: 
   )
 }
 
-export default CategoriesSelector;
+export default CategorieSelector;

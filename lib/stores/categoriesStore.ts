@@ -2,6 +2,8 @@ import { signal } from "@preact/signals-react";
 
 type CategorieProps = string;
 
+export const categories = signal<CategorieProps[] | []>(['groceries', 'rent', 'utilities', 'transportation', 'entertainment', 'clothing', 'health', 'insurance', 'education', 'other'].sort());
+
 /**
  * Categories store
  * @example
@@ -10,8 +12,6 @@ type CategorieProps = string;
  * @returns {function} The addCategory function
  * @returns {function} The deleteCategorie function
  */
-
-export const categories = signal<CategorieProps[] | []>(['groceries', 'rent', 'utilities', 'transportation', 'entertainment', 'clothing', 'health', 'insurance', 'education', 'other'].sort());
 
 export const useCategoriesStore = () => {
   const addCategory = (value: CategorieProps) => {
