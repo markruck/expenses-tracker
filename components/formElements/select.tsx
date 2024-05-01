@@ -2,7 +2,7 @@ import FormErrorMessage from "./formErrorMessage";
 
 type FormSelectProps = {
   options: React.OptionHTMLAttributes<HTMLOptionElement>[];
-  error: string[];
+  error?: string[];
 } & React.SelectHTMLAttributes<HTMLSelectElement>;
 
 const FormSelect = (props: FormSelectProps) => {
@@ -17,7 +17,7 @@ const FormSelect = (props: FormSelectProps) => {
           })}
         </select>
       </div>
-      {error.map((error, index) => <FormErrorMessage key={`${props.name}_error_${index}`} error={error} />)}
+      {error?.map((error, index) => <FormErrorMessage key={`${props.name}_error_${index}`} error={error} />)}
     </>
   )
 }
