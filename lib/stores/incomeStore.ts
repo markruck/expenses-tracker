@@ -5,6 +5,7 @@ import { useMonthStore } from "./monthStore";
 import { sortBy } from "lodash";
 
 export type IncomeProps = {
+    id?: number;
     date: Date;
     amount: number;
     type: string;
@@ -40,22 +41,20 @@ export const useIncomeStore = () => {
      * addIncome({ date: new Date(), type: 'main', amount: 100, description: 'Salary' })
      */
     const addIncome = (value: IncomeProps) => {
+        value.id = new Date().getTime();
         income.value = [...income.value, value];
         setStoredValue('income', income.value);
     }
 
     /**
      * Delete an income
-     * @param {object} value The income object
-     * @param {Date} value.date The date of the income
-     * @param {string} value.type The type of the income
-     * @param {number} value.amount The amount of the income
+     * @param {number} value.id The id of the income
      * @example
-     * deleteIncome({ date: new Date(), type: 'main', amount: 100 })
+     * deleteIncome({ id: 1 })
      */
-    const deleteIncome = ({ date, type, amount }: Partial<IncomeProps>) => {
+    const deleteIncome = ({ id }: Partial<IncomeProps>) => {
         income.value = income.value.filter((entry) => {
-            return !(entry.date === date && entry.type === type && entry.amount === amount)
+            return !(entry.id === id);
         });
         setStoredValue('income', income.value);
     }

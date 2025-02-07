@@ -5,6 +5,7 @@ import { sortBy } from "lodash"
 import { useMonthStore } from "./monthStore";
 
 export type ExpenseProps = {
+  id?: number | null;
   date: Date;
   amount: number;
   category: string;
@@ -39,6 +40,7 @@ export const useExpensesStore = () => {
    * addExpense({ date: new Date(), category: 'Groceries', amount: 100 })
    */
   const addExpense = (value: ExpenseProps) => {
+    value.id = new Date().getTime();
     expenses.value = [...expenses.value, value];
     setStoredValue('expenses', expenses.value);
   }
@@ -46,15 +48,13 @@ export const useExpensesStore = () => {
   /**
    * Delete an expense
    * @param {object} value The expense object
-   * @param {Date} value.date The date of the expense
-   * @param {string} value.category The category of the expense
-   * @param {number} value.amount The amount of the expense
+   * @param {number} value.id The id of the expense
    * @example
-   * deleteExpense({ date: new Date(), category: 'Groceries', amount: 100 })
+   * deleteExpense({ id: 1 })
    */
-  const deleteExpense = ({ date, category, amount }: Partial<ExpenseProps>) => {
-    expenses.value = expenses.value.filter((entry, index) => {
-      return !(entry.date === date && entry.category === category && entry.amount === amount)
+  const deleteExpense = ({ id }: Partial<ExpenseProps>) => {
+    expenses.value = expenses.value.filter((entry) => {
+      return !(entry.id === id);
     });
     setStoredValue('expenses', expenses.value);
   }
@@ -89,7 +89,7 @@ export const useExpensesStore = () => {
 
       if (currentExpenses.length === 0) {
         return {
-          expenses: [{ date: new Date(), amount: 0, category: '', description: '' }],
+          expenses: [{id: null, date: new Date(), amount: 0, category: '', description: '' }],
           totalExpenses: 0
         };
       }
