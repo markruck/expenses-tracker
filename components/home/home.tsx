@@ -27,8 +27,8 @@ const Home = ({ session }: { session: Session | null }) => {
 
   if (loadinIncome || loadingExpesnes) return <LoadingScreen />
 
-  if (session?.user) {
-    setUser(session.user)
+  // if (!session?.user) {
+  //   setUser(session.user)
 
     return (
       <div className="w-full">
@@ -58,7 +58,7 @@ const Home = ({ session }: { session: Session | null }) => {
         </div>
       </div>
     );
-  }
+  // }
 
   return (
     <p>

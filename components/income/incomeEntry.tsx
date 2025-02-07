@@ -16,7 +16,7 @@ import { IncomeProps } from "@/lib/stores/incomeStore";
  * @param {number} props.amount - The amount of the income
  */
 
-const IncomeEntry = ({ date, type, description, amount }: IncomeProps) => {
+const IncomeEntry = ({id, date, type, description, amount }: IncomeProps) => {
   const { deleteIncome } = useIncomeStore();
 
   return (
@@ -25,7 +25,7 @@ const IncomeEntry = ({ date, type, description, amount }: IncomeProps) => {
         <p className="capitalize">{type} income</p>
         <p className="font-size-small">{description}</p>
         <p className="text-right">{currencyFormatDE.format(amount)}</p>
-        <Image className="cursor-pointer" src={trashIcon} alt="delete" width={16} onClick={() => { deleteIncome({ date, type, amount }) }} />
+        <Image className="cursor-pointer" src={trashIcon} alt="delete" width={16} onClick={() => { deleteIncome({ id }) }} />
       </div>
     </div>
   )

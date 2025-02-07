@@ -16,7 +16,7 @@ import { ExpenseProps } from "@/lib/stores/expensesStore";
  * @param {number} props.amount - The amount of the expense
  */
 
-const ExpenseEntry = ({ date, category, description, amount }: ExpenseProps) => {
+const ExpenseEntry = ({id, date, category, description, amount }: ExpenseProps) => {
   const { deleteExpense } = useExpensesStore();
   return (
     <div className={"list-entry-container cursor-initial"}>
@@ -25,7 +25,7 @@ const ExpenseEntry = ({ date, category, description, amount }: ExpenseProps) => 
         <p className="capitalize">{category}</p>
         <p className="font-size-small">{description}</p>
         <p className="capitalize text-right">{currencyFormatDE.format(amount)}</p>
-        <Image className="cursor-pointer" src={trashIcon} alt="delete" width={16} onClick={() => { deleteExpense({ date, category, amount }) }} />
+        <Image className="cursor-pointer" src={trashIcon} alt="delete" width={16} onClick={() => { deleteExpense({ id }) }} />
       </div>
     </div>
   )

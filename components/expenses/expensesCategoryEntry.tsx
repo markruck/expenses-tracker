@@ -17,7 +17,7 @@ import { ExpenseProps } from "@/lib/stores/expensesStore";
 
 const ExpenseCategoryEntry = ({ category, expenses }: { category: string, expenses: ExpenseProps[] }) => {
 
-  const [isCollapsed, setIsCollapsed] = useState(true);
+  const [isCollapsed, setIsCollapsed] = useState(false);
   const totalExpensesByCategory = expenses.reduce((a, b) => a + b.amount, 0);
 
   return (

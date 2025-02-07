@@ -98,7 +98,7 @@ const IncomeForm = () => {
                                 { value: '', label: 'Select a type', disabled: true },
                                 { value: 'main', label: 'Main' },
                                 { value: 'other', label: 'Other' },
-                                { value: 'error', label: 'Error' }
+                                { value: 'error', label: 'Example Error' }
                             ]}
                             error={typeError}
                         />
