@@ -33,15 +33,16 @@ const ExpenseEntry = ({
         <p className="capitalize text-right">
           {currencyFormatDE.format(amount)}
         </p>
-        <Image
-          className="cursor-pointer"
-          src={trashIcon}
-          alt="delete"
-          width={16}
+        <button
+          type="button"
+          className="icon-button"
+          aria-label="Delete expense"
           onClick={() => {
             deleteExpense({ id });
           }}
-        />
+        >
+          <Image src={trashIcon} alt="" width={16} aria-hidden="true" />
+        </button>
       </div>
     </div>
   );

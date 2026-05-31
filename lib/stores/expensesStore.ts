@@ -1,5 +1,5 @@
 import React from "react";
-import { signal, computed } from "@preact/signals";
+import { signal, computed } from "@preact/signals-react";
 import useLocalStorage from "./localStorage";
 import { sortBy } from "lodash";
 import { useMonthStore } from "./monthStore";
@@ -92,15 +92,7 @@ export const useExpensesStore = () => {
 
       if (currentExpenses.length === 0) {
         return {
-          expenses: [
-            {
-              id: null,
-              date: new Date(),
-              amount: 0,
-              category: "",
-              description: "",
-            },
-          ],
+          expenses: [] as ExpenseProps[],
           totalExpenses: 0,
         };
       }

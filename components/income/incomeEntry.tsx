@@ -25,15 +25,16 @@ const IncomeEntry = ({ id, date, type, description, amount }: IncomeProps) => {
         <p className="capitalize">{type} income</p>
         <p className="font-size-small">{description}</p>
         <p className="text-right">{currencyFormatDE.format(amount)}</p>
-        <Image
-          className="cursor-pointer"
-          src={trashIcon}
-          alt="delete"
-          width={16}
+        <button
+          type="button"
+          className="icon-button"
+          aria-label="Delete income"
           onClick={() => {
             deleteIncome({ id });
           }}
-        />
+        >
+          <Image src={trashIcon} alt="" width={16} aria-hidden="true" />
+        </button>
       </div>
     </div>
   );

@@ -8,6 +8,7 @@ import { useSearchParams } from 'next/navigation'
 import FormInput from "../formElements/input";
 import FormTextArea from "../formElements/textArea";
 import FormSelect from "../formElements/select";
+import { parseDateInputValue } from "@lib/utils";
 
 const IncomeFormSchema = z.object({
     amount: z.coerce.number().positive(),
@@ -77,7 +78,7 @@ const IncomeForm = () => {
                             type="date"
                             required={true}
                             value={date.toISOString().substring(0, 10)}
-                            onChange={(e) => { setDate(new Date(e.target.value)) }} />
+                            onChange={(e) => { setDate(parseDateInputValue(e.target.value)) }} />
 
                         <FormInput
                             error={amountError}
@@ -95,15 +96,14 @@ const IncomeForm = () => {
                             options={[
                                 { value: '', label: 'Select a type', disabled: true },
                                 { value: 'main', label: 'Main' },
-                                { value: 'other', label: 'Other' },
-                                { value: 'error', label: 'Example Error' }
+                                { value: 'other', label: 'Other' }
                             ]}
                             error={typeError}
                         />
 
                         <FormTextArea
                             error={descriptionError}
-                            placeholder="Enter a breif description"
+                            placeholder="Enter a brief description"
                             value={description}
                             onChange={(e) => { setDescription(e.target.value) }} />
 

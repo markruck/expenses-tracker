@@ -8,10 +8,11 @@ import ExpensesFormHeader from "./expensesFormHeader";
 import { useSearchParams } from "next/navigation";
 import FormInput from "../formElements/input";
 import FormTextArea from "../formElements/textArea";
+import { parseDateInputValue } from "@lib/utils";
 
 const ExpensesFormSchema = z.object({
   amount: z.coerce.number().positive(),
-  category: z.string(),
+  category: z.string().min(1),
   description: z.string(),
 });
 
@@ -31,7 +32,7 @@ const ExpensesForm = () => {
   const [showForm, setShowForm] = React.useState(shouldShowForm);
   const [date, setDate] = React.useState(new Date());
   const [amount, setAmount] = React.useState<number | string>("");
-  const [category, setCategory] = React.useState<string>("all");
+  const [category, setCategory] = React.useState<string>("");
   const [description, setDescription] = React.useState("");
 
   const [dateError, setDateError] = React.useState<string[]>([]);
@@ -40,7 +41,7 @@ const ExpensesForm = () => {
 
   const resetForm = () => {
     setAmount("");
-    setCategory("all");
+    setCategory("");
     setDescription("");
     setDateError([]);
     setAmountError([]);
@@ -86,7 +87,7 @@ const ExpensesForm = () => {
               required={true}
               value={date.toISOString().substring(0, 10)}
               onChange={(e) => {
-                setDate(new Date(e.target.value));
+                setDate(parseDateInputValue(e.target.value));
               }}
               error={dateError}
             />
@@ -111,7 +112,7 @@ const ExpensesForm = () => {
 
             <FormTextArea
               name="description"
-              placeholder="Enter a breif description"
+              placeholder="Enter a brief description"
               value={description}
               onChange={(e) => {
                 setDescription(e.target.value);

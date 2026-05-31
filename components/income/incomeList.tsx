@@ -3,7 +3,6 @@
 import { useIncomeStore } from "../../lib/stores/incomeStore";
 import { currencyFormatDE } from "@lib/utils";
 import LoadingScreen from "../ui/loadingScreen";
-import Link from "next/link";
 import IncomeEntry from "./incomeEntry";
 import MonthSelector from "../monthSelector";
 import IncomeCharts from "./incomeCharts";
@@ -35,15 +34,13 @@ const IncomeList = () => {
           Total Income: {currencyFormatDE.format(totalIncome)}
         </p>
       </div>
-      <div className="flex flex-1 justify-end">
-        <Link
-          className="button button-danger"
-          href="/income/error"
-          title="Home"
-        >
-          Throw test error
-        </Link>
-      </div>
+      {process.env.NODE_ENV === "development" ? (
+        <div className="flex flex-1 justify-end">
+          <a className="button button-danger" href="/income/error">
+            Throw test error
+          </a>
+        </div>
+      ) : null}
     </>
   );
 };

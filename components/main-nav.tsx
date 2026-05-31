@@ -24,9 +24,6 @@ const MainNav = () => {
       <Link className={pathName === '/expenses' ? styles.activeLink : ''} href="/expenses" title="Expenses">
         Expenses
       </Link>
-      <Link className={pathName === '/error' ? styles.activeLink : ''} href="/error" title="Error">
-        Error
-      </Link>
     </div>
   );
 }

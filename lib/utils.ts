@@ -17,3 +17,8 @@ type ClassValue = string | number | boolean | null | undefined;
 export const cn = (...classNames: ClassValue[]) => {
   return classNames.filter(Boolean).join(" ");
 };
+
+export const parseDateInputValue = (value: string) => {
+  const [year, month, day] = value.split("-").map(Number);
+  return new Date(year, month - 1, day);
+};
