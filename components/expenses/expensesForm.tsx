@@ -90,6 +90,7 @@ const ExpensesForm = () => {
             <FormInput
               type="date"
               name="date"
+              aria-label="Expense date"
               required={true}
               value={formatDateInputValue(date)}
               onChange={(e) => {

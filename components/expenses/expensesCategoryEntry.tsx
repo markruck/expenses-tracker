@@ -33,10 +33,10 @@ const ExpenseCategoryEntry = ({
         aria-expanded={!isCollapsed}
         onClick={() => setIsCollapsed(!isCollapsed)}
       >
-        <h3 className="capitalize bold">{category}</h3>
-        <p className="flex flex-end bold margin-1-0">
+        <span className="capitalize bold">{category}</span>
+        <span className="flex flex-end bold margin-1-0">
           {currencyFormatDE.format(totalExpensesByCategory)}
-        </p>
+        </span>
       </button>
       {isCollapsed ? null : (
         <div className={styles.category}>

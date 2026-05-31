@@ -79,6 +79,8 @@ const IncomeForm = () => {
                         <h2 className="text-center form-overlay-title">Add new Income</h2>
                         <FormInput
                             error={dateError}
+                            name="date"
+                            aria-label="Income date"
                             type="date"
                             required={true}
                             value={formatDateInputValue(date)}
