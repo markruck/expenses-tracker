@@ -2,7 +2,7 @@
 import React, { SyntheticEvent } from "react";
 import { useIncomeStore } from "../../lib/stores/incomeStore";
 import { z } from "zod";
-import { useValdateForm } from "../../lib/useValdateForm";
+import { useValidateForm } from "../../lib/useValidateForm";
 import IncomeFormHeader from "./incomeFormHeader";
 import { useSearchParams } from 'next/navigation'
 import FormInput from "../formElements/input";
@@ -29,7 +29,7 @@ const IncomeForm = () => {
     const searchParams = useSearchParams()
     const shouldShowForm = searchParams.get('showForm') === 'true' || false;
 
-    const { findErrors, validate } = useValdateForm(IncomeFormSchema);
+    const { findErrors, validate } = useValidateForm(IncomeFormSchema);
     const { addIncome } = useIncomeStore();
     const [showForm, setShowForm] = React.useState(shouldShowForm);
     const [date, setDate] = React.useState(new Date());
@@ -111,7 +111,7 @@ const IncomeForm = () => {
                             value={description}
                             onChange={(e) => { setDescription(e.target.value) }} />
 
-                        < div className="flex flex-1 justify-center">
+                        <div className="flex flex-1 justify-center">
                             <button type="submit" className="flex-1 button">Add</button>
                         </div>
                     </div>

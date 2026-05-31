@@ -3,7 +3,7 @@ import React, { SyntheticEvent } from "react";
 import { z } from "zod";
 import { useExpensesStore } from "@lib/stores/expensesStore";
 import CategorieSelector from "../categorieSelector";
-import { useValdateForm } from "../../lib/useValdateForm";
+import { useValidateForm } from "../../lib/useValidateForm";
 import ExpensesFormHeader from "./expensesFormHeader";
 import { useSearchParams } from "next/navigation";
 import FormInput from "../formElements/input";
@@ -30,7 +30,7 @@ const ExpensesForm = () => {
   const searchParams = useSearchParams();
   const shouldShowForm = searchParams.get("showForm") === "true" || false;
 
-  const { findErrors, validate } = useValdateForm(ExpensesFormSchema);
+  const { findErrors, validate } = useValidateForm(ExpensesFormSchema);
   const { addExpense } = useExpensesStore();
   const [showForm, setShowForm] = React.useState(shouldShowForm);
   const [date, setDate] = React.useState(new Date());

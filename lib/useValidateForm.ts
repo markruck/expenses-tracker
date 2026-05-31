@@ -15,11 +15,11 @@ type ValidationResult =
  * @param schema - A zod schema to validate the form
  * @returns An object with errors, findErrors and validate
  * @example
- * const { errors, findErrors, validate } = useValdateForm(IncomeFormSchema);
+ * const { errors, findErrors, validate } = useValidateForm(IncomeFormSchema);
  * @see IncomeForm
  * @see ExpensesForm
  */
-export const useValdateForm = (schema: z.ZodType<any, any>) => {
+export const useValidateForm = (schema: z.ZodType<any, any>) => {
   const [errors, setErrors] = React.useState<ValidationError[]>([]);
 
   const findErrors = (fieldName: string, currentErrors = errors) => {

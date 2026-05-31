@@ -45,7 +45,7 @@ const CategorieSelector = ({
         value={category}
         onChange={(e) => setCategory(e.target.value)}
       >
-        <option key={category} value={showAll ? "all" : ""} disabled={!showAll}>
+        <option key="category-placeholder" value={showAll ? "all" : ""} disabled={!showAll}>
           {defaultLabel}
         </option>
         {categories.value.map((category) => {
