@@ -1,5 +1,6 @@
 "use client";
 import { Income, IncomeForm } from "@components/income";
+import { Suspense } from "react";
 
 /**
  * Income page. Returns the Income form and the Income list.
@@ -11,7 +12,9 @@ import { Income, IncomeForm } from "@components/income";
 const Page = () => {
   return (
     <>
-      <IncomeForm />
+      <Suspense fallback={null}>
+        <IncomeForm />
+      </Suspense>
       <Income />
     </>
   );

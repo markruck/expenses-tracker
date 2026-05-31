@@ -9,13 +9,10 @@ import { useSearchParams } from "next/navigation";
 import FormInput from "../formElements/input";
 import FormTextArea from "../formElements/textArea";
 
-const invalid_type_error = "Invalid type provided for this field";
-const required_error = "This field cannot be blank";
-
 const ExpensesFormSchema = z.object({
-  amount: z.coerce.number({ invalid_type_error, required_error }).positive(),
-  category: z.string({ invalid_type_error }),
-  description: z.string({ invalid_type_error }),
+  amount: z.coerce.number().positive(),
+  category: z.string(),
+  description: z.string(),
 });
 
 /**
@@ -53,10 +50,11 @@ const ExpensesForm = () => {
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
-    if (!validate({ date, amount, category, description })) {
-      setDateError(findErrors("date"));
-      setAmountError(findErrors("amount"));
-      setDescriptionError(findErrors("description"));
+    const validation = validate({ date, amount, category, description });
+    if (!validation.success) {
+      setDateError(findErrors("date", validation.errors));
+      setAmountError(findErrors("amount", validation.errors));
+      setDescriptionError(findErrors("description", validation.errors));
       return;
     }
     addExpense({ date, amount: amount as number, category, description });

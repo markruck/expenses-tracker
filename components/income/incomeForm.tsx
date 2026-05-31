@@ -9,13 +9,10 @@ import FormInput from "../formElements/input";
 import FormTextArea from "../formElements/textArea";
 import FormSelect from "../formElements/select";
 
-const invalid_type_error = 'Invalid type provided for this field';
-const required_error = 'This field cannot be blank';
-
 const IncomeFormSchema = z.object({
-    amount: z.coerce.number({ invalid_type_error, required_error }).positive(),
-    type: z.enum(['main', 'other'], { invalid_type_error, required_error }),
-    description: z.string({ invalid_type_error }),
+    amount: z.coerce.number().positive(),
+    type: z.enum(['main', 'other']),
+    description: z.string(),
 });
 
 /**
@@ -43,11 +40,12 @@ const IncomeForm = () => {
 
     const handleSubmit = (e: SyntheticEvent) => {
         e.preventDefault();
-        if (!validate({ amount, type, description })) {
-            setDateError(findErrors('date'));
-            setAmountError(findErrors('amount'));
-            setTypeError(findErrors('type'));
-            setDescriptionError(findErrors('description'));
+        const validation = validate({ amount, type, description });
+        if (!validation.success) {
+            setDateError(findErrors('date', validation.errors));
+            setAmountError(findErrors('amount', validation.errors));
+            setTypeError(findErrors('type', validation.errors));
+            setDescriptionError(findErrors('description', validation.errors));
             return;
         }
         addIncome({ date, amount: amount as number, type, description });

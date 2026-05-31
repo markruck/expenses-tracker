@@ -1,6 +1,15 @@
 import React from "react";
 import { ZodError, z } from "zod";
 
+type ValidationError = {
+  path: PropertyKey[];
+  message: string;
+};
+
+type ValidationResult =
+  | { success: true; errors: [] }
+  | { success: false; errors: ValidationError[] };
+
 /**
  * A hook to validate a form using zod
  * @param schema - A zod schema to validate the form
@@ -11,16 +20,16 @@ import { ZodError, z } from "zod";
  * @see ExpensesForm
  */
 export const useValdateForm = (schema: z.ZodType<any, any>) => {
-  const [errors, setErrors] = React.useState<{ path: (string | number)[]; message: string; }[]>([]);
+  const [errors, setErrors] = React.useState<ValidationError[]>([]);
 
-  const findErrors = (fieldName: string) => {
-    return errors.filter((item) => {
+  const findErrors = (fieldName: string, currentErrors = errors) => {
+    return currentErrors.filter((item) => {
       return item.path.includes(fieldName);
     }).map((item) => item.message);
   };
 
   const handleZodError = (error: z.ZodError<any>) => {
-    const errors = error.errors.map((err) => {
+    const errors = error.issues.map((err) => {
       return {
         path: err.path,
         message: err.message,
@@ -28,18 +37,19 @@ export const useValdateForm = (schema: z.ZodType<any, any>) => {
     });
 
     setErrors(errors);
+    return errors;
   }
 
-  const validate = (data: any) => {
+  const validate = (data: any): ValidationResult => {
     try {
       schema.parse(data);
       setErrors([]);
-      return true;
+      return { success: true, errors: [] };
     } catch (error) {
       if (error instanceof ZodError) {
-        handleZodError(error);
+        return { success: false, errors: handleZodError(error) };
       }
-      return false;
+      return { success: false, errors: [] };
     }
   }
 

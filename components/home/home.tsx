@@ -1,5 +1,4 @@
 "use client";
-import { useUserStore } from "@lib/stores/userStore";
 import { useIncomeStore } from "@lib/stores/incomeStore";
 import { useExpensesStore } from "@lib/stores/expensesStore";
 import { currencyFormatDE } from "@lib/utils";
@@ -10,13 +9,10 @@ import Link from "next/link";
 
 /** Home component
  * @example
- * <Home session={session} />
- * @param {Object} props - The props for the component
- * @param {Session} props.session - The session object
+ * <Home />
  */
 
 const Home = () => {
-  const { setUser } = useUserStore();
   const { getIncome, loading: loadinIncome } = useIncomeStore();
   const { getExpenses, loading: loadingExpesnes } = useExpensesStore();
 
@@ -28,9 +24,6 @@ const Home = () => {
   } = getIncome();
 
   if (loadinIncome || loadingExpesnes) return <LoadingScreen />;
-
-  // if (!session?.user) {
-  //   setUser(session.user)
 
   return (
     <div className="w-full">
@@ -69,13 +62,6 @@ const Home = () => {
         </div>
       </div>
     </div>
-  );
-  // }
-
-  return (
-    <p>
-      No session data, please <em>Sign In</em> first.
-    </p>
   );
 };
 

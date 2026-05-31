@@ -11,3 +11,9 @@ export const currencyFormatDE = new Intl.NumberFormat("de-DE", {
   style: "currency",
   currency: "EUR",
 });
+
+type ClassValue = string | number | boolean | null | undefined;
+
+export const cn = (...classNames: ClassValue[]) => {
+  return classNames.filter(Boolean).join(" ");
+};

@@ -1,6 +1,7 @@
 "use client";
 
 import { Expenses, ExpensesForm } from "@components/expenses";
+import { Suspense } from "react";
 
 /**
  * Expenses page. Returns the Expenses form and the Expenses list.
@@ -12,7 +13,9 @@ import { Expenses, ExpensesForm } from "@components/expenses";
 const Page = () => {
   return (
     <>
-      <ExpensesForm />
+      <Suspense fallback={null}>
+        <ExpensesForm />
+      </Suspense>
       <Expenses />
     </>
   );

@@ -77,7 +77,10 @@ export const useExpensesStore = () => {
         entry.date = new Date(entry.date);
 
         if (category === undefined || category === "all") {
-          return expenseDate.getMonth() === month.value;
+          return (
+            expenseDate.getMonth() === month.value &&
+            expenseDate.getFullYear() === currentYear
+          );
         }
 
         return (
