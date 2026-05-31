@@ -26,16 +26,18 @@ const ExpenseCategoryEntry = ({
   const totalExpensesByCategory = expenses.reduce((a, b) => a + b.amount, 0);
 
   return (
-    <div className={`cursor-pointer ${styles.categoryContanier}`}>
-      <div
-        className="flex flex-1 space-between align-center"
+    <div className={styles.categoryContanier}>
+      <button
+        type="button"
+        className={`${styles.categoryButton} flex flex-1 space-between align-center`}
+        aria-expanded={!isCollapsed}
         onClick={() => setIsCollapsed(!isCollapsed)}
       >
         <h3 className="capitalize bold">{category}</h3>
         <p className="flex flex-end bold margin-1-0">
           {currencyFormatDE.format(totalExpensesByCategory)}
         </p>
-      </div>
+      </button>
       {isCollapsed ? null : (
         <div className={styles.category}>
           {expenses.map((entry, index) => {

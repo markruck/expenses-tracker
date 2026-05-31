@@ -14,12 +14,14 @@ type FormInputProps = {
  */
 
 const FormInput = (props: FormInputProps) => {
+  const { error, ...inputProps } = props;
+
   return (
     <>
       <div className="flex space-between align-center">
-        <input {...props} />
+        <input {...inputProps} />
       </div>
-      {props.error.map((error, index) => <FormErrorMessage key={`${props.name}_error_${index}`} error={error} />)}
+      {error.map((message, index) => <FormErrorMessage key={`${props.name}_error_${index}`} error={message} />)}
     </>
   )
 }

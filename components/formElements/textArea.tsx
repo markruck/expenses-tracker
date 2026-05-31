@@ -14,12 +14,14 @@ type FormTextAreaProps = {
  */
 
 const FormTextArea = (props: FormTextAreaProps) => {
+  const { error, ...textAreaProps } = props;
+
   return (
     <>
       <div className="flex space-between align-center">
-        <textarea {...props} />
+        <textarea {...textAreaProps} />
       </div>
-      {props.error.map((error, index) => <FormErrorMessage key={`${props.name}_error_${index}`} error={error} />)}
+      {error.map((message, index) => <FormErrorMessage key={`${props.name}_error_${index}`} error={message} />)}
     </>
   )
 }

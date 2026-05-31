@@ -43,9 +43,20 @@ const HomeCharts = () => {
     ]),
   ];
 
+  const incomeByType = income.reduce(
+    (
+      acc: ExpensesByCategoryProps,
+      { type, amount }: { type: string; amount: number }
+    ) => {
+      acc[type] = acc[type] ? acc[type] + amount : amount;
+      return acc;
+    },
+    {}
+  );
+
   const incomeChartData = [
     ["Category", "Amount"],
-    ...income.map(({ type, amount }) => [type, amount]),
+    ...Object.entries(incomeByType).map(([type, amount]) => [type, amount]),
   ];
 
   return (

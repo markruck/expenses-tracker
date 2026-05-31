@@ -13,9 +13,14 @@ const IncomeCharts = () => {
     value: { income },
   } = getIncome();
 
+  const incomeByType = income.reduce((acc: { [key: string]: number }, { type, amount }) => {
+    acc[type] = acc[type] ? acc[type] + amount : amount;
+    return acc;
+  }, {});
+
   const chartData = [
     ["Category", "Amount"],
-    ...income.map(({ type, amount }) => [type, amount]),
+    ...Object.entries(incomeByType).map(([type, amount]) => [type, amount]),
   ];
 
   return (
