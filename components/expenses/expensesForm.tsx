@@ -105,7 +105,7 @@ const ExpensesForm = () => {
               required={true}
               value={amount}
               onChange={(e) => {
-                setAmount(e.target.valueAsNumber);
+                setAmount(e.target.value === "" ? "" : e.target.valueAsNumber);
               }}
               error={amountError}
             />

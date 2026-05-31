@@ -60,6 +60,7 @@ const IncomeForm = () => {
         setAmount('');
         setType('');
         setDescription('');
+        setDateError([]);
         setAmountError([]);
         setTypeError([]);
         setDescriptionError([]);
@@ -89,7 +90,7 @@ const IncomeForm = () => {
                             type="number"
                             required
                             value={amount}
-                            onChange={(e) => { setAmount(e.target.valueAsNumber) }} />
+                            onChange={(e) => { setAmount(e.target.value === '' ? '' : e.target.valueAsNumber) }} />
 
                         <FormSelect
                             name="type"
