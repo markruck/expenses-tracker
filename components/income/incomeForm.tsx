@@ -11,6 +11,9 @@ import FormSelect from "../formElements/select";
 import { formatDateInputValue, parseDateInputValue } from "@lib/utils";
 
 const IncomeFormSchema = z.object({
+    date: z.date().refine((date) => !Number.isNaN(date.getTime()), {
+        message: "Please enter a valid date",
+    }),
     amount: z.coerce.number().positive(),
     type: z.enum(['main', 'other']),
     description: z.string(),
@@ -41,7 +44,7 @@ const IncomeForm = () => {
 
     const handleSubmit = (e: SyntheticEvent) => {
         e.preventDefault();
-        const validation = validate({ amount, type, description });
+        const validation = validate({ date, amount, type, description });
         if (!validation.success) {
             setDateError(findErrors('date', validation.errors));
             setAmountError(findErrors('amount', validation.errors));

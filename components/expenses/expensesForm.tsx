@@ -11,6 +11,9 @@ import FormTextArea from "../formElements/textArea";
 import { formatDateInputValue, parseDateInputValue } from "@lib/utils";
 
 const ExpensesFormSchema = z.object({
+  date: z.date().refine((date) => !Number.isNaN(date.getTime()), {
+    message: "Please enter a valid date",
+  }),
   amount: z.coerce.number().positive(),
   category: z.string().min(1),
   description: z.string(),
