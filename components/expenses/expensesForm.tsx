@@ -8,7 +8,7 @@ import ExpensesFormHeader from "./expensesFormHeader";
 import { useSearchParams } from "next/navigation";
 import FormInput from "../formElements/input";
 import FormTextArea from "../formElements/textArea";
-import { parseDateInputValue } from "@lib/utils";
+import { formatDateInputValue, parseDateInputValue } from "@lib/utils";
 
 const ExpensesFormSchema = z.object({
   amount: z.coerce.number().positive(),
@@ -37,6 +37,7 @@ const ExpensesForm = () => {
 
   const [dateError, setDateError] = React.useState<string[]>([]);
   const [amountError, setAmountError] = React.useState<string[]>([]);
+  const [categoryError, setCategoryError] = React.useState<string[]>([]);
   const [descriptionError, setDescriptionError] = React.useState<string[]>([]);
 
   const resetForm = () => {
@@ -45,6 +46,7 @@ const ExpensesForm = () => {
     setDescription("");
     setDateError([]);
     setAmountError([]);
+    setCategoryError([]);
     setDescriptionError([]);
     setShowForm(false);
   };
@@ -55,6 +57,7 @@ const ExpensesForm = () => {
     if (!validation.success) {
       setDateError(findErrors("date", validation.errors));
       setAmountError(findErrors("amount", validation.errors));
+      setCategoryError(findErrors("category", validation.errors));
       setDescriptionError(findErrors("description", validation.errors));
       return;
     }
@@ -85,7 +88,7 @@ const ExpensesForm = () => {
               type="date"
               name="date"
               required={true}
-              value={date.toISOString().substring(0, 10)}
+              value={formatDateInputValue(date)}
               onChange={(e) => {
                 setDate(parseDateInputValue(e.target.value));
               }}
@@ -108,6 +111,7 @@ const ExpensesForm = () => {
               category={category}
               setCategory={setCategory}
               row
+              error={categoryError}
             />
 
             <FormTextArea

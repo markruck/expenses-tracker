@@ -12,6 +12,7 @@ const MonthSelector = () => {
   return (
     <div className="flex flex-col">
       <select
+        aria-label="Select month"
         className="fit-content"
         onChange={(e) => setMonth(parseInt(e.target.value))}
         defaultValue={month.value}

@@ -1,4 +1,5 @@
 import { useCategoriesStore } from "@lib/stores/categoriesStore";
+import FormErrorMessage from "./formElements/formErrorMessage";
 
 type CategorieSelectorProps = {
   category: string;
@@ -6,6 +7,7 @@ type CategorieSelectorProps = {
   row?: boolean;
   showAll?: boolean;
   withLabel?: boolean;
+  error?: string[];
 };
 
 /**
@@ -26,6 +28,7 @@ const CategorieSelector = ({
   row,
   showAll,
   withLabel,
+  error,
 }: CategorieSelectorProps) => {
   const { categories } = useCategoriesStore();
   const classes = row
@@ -37,6 +40,7 @@ const CategorieSelector = ({
     <div className={classes}>
       {withLabel ? <label htmlFor="category">Category</label> : null}
       <select
+        aria-label={withLabel ? undefined : "Select category"}
         id="category"
         value={category}
         onChange={(e) => setCategory(e.target.value)}
@@ -52,6 +56,14 @@ const CategorieSelector = ({
           );
         })}
       </select>
+      {error?.map((message, index) => {
+        return (
+          <FormErrorMessage
+            key={`category_error_${index}`}
+            error={message}
+          />
+        );
+      })}
     </div>
   );
 };

@@ -8,7 +8,7 @@ import { useSearchParams } from 'next/navigation'
 import FormInput from "../formElements/input";
 import FormTextArea from "../formElements/textArea";
 import FormSelect from "../formElements/select";
-import { parseDateInputValue } from "@lib/utils";
+import { formatDateInputValue, parseDateInputValue } from "@lib/utils";
 
 const IncomeFormSchema = z.object({
     amount: z.coerce.number().positive(),
@@ -77,7 +77,7 @@ const IncomeForm = () => {
                             error={dateError}
                             type="date"
                             required={true}
-                            value={date.toISOString().substring(0, 10)}
+                            value={formatDateInputValue(date)}
                             onChange={(e) => { setDate(parseDateInputValue(e.target.value)) }} />
 
                         <FormInput
