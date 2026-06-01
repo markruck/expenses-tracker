@@ -8,9 +8,17 @@
 
 const ExpensesFormHeader = ({ setShowForm }: { setShowForm: (showForm: boolean) => void }) => {
   return (
-    <div className="flex flex-1 space-between align-center margin-1-0">
+    <div className="page-header">
       <h1 className="margin-1-0">Expenses</h1>
-      <button onClick={() => setShowForm(true)} className='button button-create'>New Expense</button>
+      <div className="page-actions">
+        <button
+          type="button"
+          onClick={() => setShowForm(true)}
+          className="button button-create"
+        >
+          New Expense
+        </button>
+      </div>
     </div>
   );
 }

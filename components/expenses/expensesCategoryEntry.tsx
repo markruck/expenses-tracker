@@ -26,7 +26,7 @@ const ExpenseCategoryEntry = ({
   const totalExpensesByCategory = expenses.reduce((a, b) => a + b.amount, 0);
 
   return (
-    <div className={styles.categoryContanier}>
+    <div className={styles.categoryContainer}>
       <button
         type="button"
         className={`${styles.categoryButton} flex flex-1 space-between align-center`}

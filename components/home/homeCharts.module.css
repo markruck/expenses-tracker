@@ -1,6 +1,11 @@
 .chartsContainer {
   display: flex;
-  flex: 1;
-  flex-direction: row;
-  justify-content: space-between;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+@media (max-width: 760px) {
+  .chartsContainer {
+    flex-direction: column;
+  }
 }

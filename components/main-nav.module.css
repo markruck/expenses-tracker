@@ -1,17 +1,37 @@
 .nav-container {
   display: flex;
   flex: 1;
+  gap: 0.25rem;
 }
 
 .nav-container a {
-  margin-right: 1rem;
-  font-size: large;
+  border-radius: 8px;
+  color: #475467;
+  font-size: 0.98rem;
+  font-weight: 700;
+  padding: 0.7rem 0.9rem;
+  text-decoration: none;
+  transition: background-color 0.16s ease, color 0.16s ease;
 }
 
 .nav-container a:hover {
-  text-decoration: underline;
+  background: #eef3f8;
+  color: #172033;
+  text-decoration: none;
 }
 
 .activeLink {
-  text-decoration: underline;
+  background: #dfeafb;
+  color: #1d4ed8 !important;
+}
+
+@media (max-width: 520px) {
+  .nav-container {
+    width: 100%;
+  }
+
+  .nav-container a {
+    flex: 1;
+    text-align: center;
+  }
 }

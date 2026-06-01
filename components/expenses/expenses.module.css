@@ -1,6 +1,7 @@
 .entry {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr auto;
+  align-items: center;
   gap: 1rem;
 }
 
@@ -9,14 +10,14 @@
 }
 
 .category {
-  width: 90%;
+  width: calc(100% - 1rem);
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
 }
 
-.categoryContanier {
-  border-bottom: solid 1px #ccc;
+.categoryContainer {
+  border-bottom: solid 1px #e6e6e6;
 }
 
 .categoryButton {
@@ -24,6 +25,12 @@
   border: none;
   cursor: pointer;
   font: inherit;
-  padding: 0;
+  padding: 0.75rem 0;
   width: 100%;
+}
+
+@media (max-width: 760px) {
+  .entry {
+    grid-template-columns: 1fr auto;
+  }
 }
