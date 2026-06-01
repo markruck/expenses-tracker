@@ -1,5 +1,6 @@
 import React from "react";
 import { computed, signal } from "@preact/signals-react";
+import { useSignals } from "@preact/signals-react/runtime";
 import useLocalStorage from "./localStorage";
 import { useMonthStore } from "./monthStore";
 import { sortBy } from "lodash";
@@ -21,6 +22,8 @@ export const income = signal<IncomeProps[] | []>([]);
  */
 
 export const useIncomeStore = () => {
+  useSignals();
+
   const { month } = useMonthStore();
   const { getStoredValue, setStoredValue } = useLocalStorage();
   const [loading, setLoading] = React.useState(true);

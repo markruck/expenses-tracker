@@ -1,4 +1,5 @@
 import { signal } from "@preact/signals-react";
+import { useSignals } from "@preact/signals-react/runtime";
 
 type CategorieProps = string;
 
@@ -27,6 +28,8 @@ export const categories = signal<CategorieProps[] | []>(
  */
 
 export const useCategoriesStore = () => {
+  useSignals();
+
   const addCategory = (value: CategorieProps) => {
     categories.value = [...categories.value, value];
   };
