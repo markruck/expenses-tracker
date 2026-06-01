@@ -15,7 +15,7 @@ const MonthSelector = () => {
         aria-label="Select month"
         className="fit-content"
         onChange={(e) => setMonth(parseInt(e.target.value))}
-        defaultValue={month.value}
+        value={month.value}
       >
         <option disabled value="default">
           Select

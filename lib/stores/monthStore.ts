@@ -1,4 +1,5 @@
 import { signal } from "@preact/signals-react";
+import { useSignals } from "@preact/signals-react/runtime";
 
 /**
  * Months array
@@ -28,6 +29,8 @@ const month = signal(new Date().getMonth());
  */
 
 export const useMonthStore = () => {
+  useSignals();
+
   const setMonth = (selectedMonth: number) => {
     month.value = selectedMonth;
   };
