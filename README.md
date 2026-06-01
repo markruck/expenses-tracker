@@ -1,19 +1,66 @@
-An expenses tracking app example.
+# Expenses Tracker
 
-clone the repository
+A small finance tracker built with Next.js and React. It demonstrates a practical monthly budgeting workflow with income and expense entries, category filtering, and chart-based summaries.
 
-go to the directory: expenses-tracker
+## Features
 
-run `npm install`
+- Add income entries by type.
+- Add expenses by category.
+- Filter income and expenses by month.
+- Filter expenses by category.
+- Review dashboard totals for income, expenses, and net savings.
+- View category breakdowns with charts.
 
-run `npm run dev`
+## Getting Started
 
-go to `localhost:3000`
+This project is intended as a compact example app. To run it locally:
 
-Add expenses and income entries, have fun.
+Clone the repository:
 
-<img width="763" height="601" alt="Expense entry form" src="https://github.com/user-attachments/assets/e5201136-547f-4f1d-98ed-160c6e1f3d74" />
+```bash
+git clone https://github.com/markruck/expenses-tracker.git
+cd expenses-tracker
+```
 
-<img width="752" height="648" alt="Income tracking dashboard" src="https://github.com/user-attachments/assets/fc4073e7-f1c9-44b9-860e-ce2713f0793e" />
+Install dependencies:
 
-<img width="748" height="726" alt="Monthly summary view" src="https://github.com/user-attachments/assets/a3898287-d701-4503-9c5e-1cb65c61dc9d" />
+```bash
+npm install
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000).
+
+## Available Pages
+
+- `/` - Dashboard with income, expenses, and net savings.
+- `/income` - Income entries and income breakdown charts.
+- `/expenses` - Expense entries, category filtering, and expense breakdown charts.
+
+## Scripts
+
+```bash
+npm run dev    # Start the local development server
+npm run build  # Create a production build
+npm run start  # Start the production build
+npm run lint   # Run ESLint
+```
+
+## Screenshots
+
+### Dashboard
+
+![Dashboard with income, expense, and savings summary](public/assets/screenshots/dashboard.png)
+
+### Income
+
+![Income page with category charts and income entries](public/assets/screenshots/income.png)
+
+### Expenses
+
+![Expenses page with category charts and grouped expense entries](public/assets/screenshots/expenses.png)
