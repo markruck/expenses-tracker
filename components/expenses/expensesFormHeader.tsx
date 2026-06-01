@@ -11,7 +11,13 @@ const ExpensesFormHeader = ({ setShowForm }: { setShowForm: (showForm: boolean) 
     <div className="page-header">
       <h1 className="margin-1-0">Expenses</h1>
       <div className="page-actions">
-      <button onClick={() => setShowForm(true)} className='button button-create'>New Expense</button>
+        <button
+          type="button"
+          onClick={() => setShowForm(true)}
+          className="button button-create"
+        >
+          New Expense
+        </button>
       </div>
     </div>
   );
