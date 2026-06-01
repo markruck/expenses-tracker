@@ -1,19 +1,42 @@
-An expenses tracking app example.
+# Expenses Tracker
 
-clone the repository
+A small finance tracker for recording monthly income and expenses, filtering by month and category, and reviewing totals with charts.
 
-go to the directory: expenses-tracker
+## Features
 
-run `npm install`
+- Add income entries by type.
+- Add expenses by category.
+- Filter income and expenses by month.
+- Filter expenses by category.
+- Review dashboard totals for income, expenses, and net savings.
+- View category breakdowns with charts.
 
-run `npm run dev`
+## Getting Started
 
-go to `localhost:3000`
+Install dependencies:
 
-Add expenses and income entries, have fun.
+```bash
+npm install
+```
 
-<img width="763" height="601" alt="Expense entry form" src="https://github.com/user-attachments/assets/e5201136-547f-4f1d-98ed-160c6e1f3d74" />
+Start the development server:
 
-<img width="752" height="648" alt="Income tracking dashboard" src="https://github.com/user-attachments/assets/fc4073e7-f1c9-44b9-860e-ce2713f0793e" />
+```bash
+npm run dev
+```
 
-<img width="748" height="726" alt="Monthly summary view" src="https://github.com/user-attachments/assets/a3898287-d701-4503-9c5e-1cb65c61dc9d" />
+Open [http://localhost:3000](http://localhost:3000).
+
+## Screenshots
+
+### Dashboard
+
+![Dashboard with income, expense, and savings summary](public/assets/screenshots/dashboard.png)
+
+### Income
+
+![Income page with category charts and income entries](public/assets/screenshots/income.png)
+
+### Expenses
+
+![Expenses page with category charts and grouped expense entries](public/assets/screenshots/expenses.png)
