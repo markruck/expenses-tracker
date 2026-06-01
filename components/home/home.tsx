@@ -27,9 +27,9 @@ const Home = () => {
 
   return (
     <div className="w-full">
-      <div className="flex flex-1 space-between align-center margin-1-0">
+      <div className="page-header">
         <h1 className="align-self-center margin-1-0">Dashboard</h1>
-        <div>
+        <div className="page-actions">
           <Link
             href={{ pathname: "/income", query: { showForm: true } }}
             className="button button-create margin-right-1"

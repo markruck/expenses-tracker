@@ -24,8 +24,8 @@ const IncomeCharts = () => {
   ];
 
   return (
-    <div className="flex flex-1 flex-row space-between">
-      <div style={{ width: "49.5%" }}>
+    <div className="charts-grid">
+      <div className="chart-panel">
         <ChartComponent
           data={chartData}
           chartType="PieChart"
@@ -34,11 +34,16 @@ const IncomeCharts = () => {
           options={{
             title: "Income by Category",
             is3D: true,
+            chartArea: { left: 24, top: 48, width: "82%", height: "74%" },
+            colors: ["#2563eb", "#16a34a", "#7c3aed"],
+            legend: { position: "right", alignment: "center" },
+            pieSliceTextStyle: { color: "#ffffff", fontSize: 14, bold: true },
+            titleTextStyle: { color: "#172033", fontSize: 16, bold: true },
           }}
           className="chart"
         />
       </div>
-      <div style={{ width: "49.5%" }}>
+      <div className="chart-panel">
         <ChartComponent
           data={chartData}
           chartType="BarChart"
@@ -46,6 +51,10 @@ const IncomeCharts = () => {
           height="300px"
           options={{
             title: "Income by Category",
+            chartArea: { left: 72, top: 48, width: "72%", height: "68%" },
+            colors: ["#2563eb"],
+            legend: { position: "top", alignment: "end" },
+            titleTextStyle: { color: "#172033", fontSize: 16, bold: true },
           }}
           className="chart"
         />

@@ -61,7 +61,7 @@ const HomeCharts = () => {
 
   return (
     <div className={styles.chartsContainer}>
-      <div style={{ width: "49.5%" }}>
+      <div className="chart-panel">
         <ChartComponent
           data={expensesChartData}
           chartType="PieChart"
@@ -71,11 +71,16 @@ const HomeCharts = () => {
             title: "Expenses",
             pieHole: 0.4,
             is3D: false,
+            chartArea: { left: 24, top: 48, width: "82%", height: "74%" },
+            colors: ["#2563eb", "#dc4a2d", "#16a34a", "#ca8a04", "#7c3aed"],
+            legend: { position: "right", alignment: "center" },
+            pieSliceTextStyle: { color: "#ffffff", fontSize: 14, bold: true },
+            titleTextStyle: { color: "#172033", fontSize: 16, bold: true },
           }}
           className="chart"
         />
       </div>
-      <div style={{ width: "49.5%" }}>
+      <div className="chart-panel">
         <ChartComponent
           data={incomeChartData}
           chartType="PieChart"
@@ -85,6 +90,11 @@ const HomeCharts = () => {
             title: "Income",
             pieHole: 0.4,
             is3D: false,
+            chartArea: { left: 24, top: 48, width: "82%", height: "74%" },
+            colors: ["#2563eb", "#16a34a", "#7c3aed"],
+            legend: { position: "right", alignment: "center" },
+            pieSliceTextStyle: { color: "#ffffff", fontSize: 14, bold: true },
+            titleTextStyle: { color: "#172033", fontSize: 16, bold: true },
           }}
           className="chart"
         />

@@ -25,6 +25,13 @@ type PieChartProps = {
  */
 
 const ChartComponent = ({ data, chartType, width, height, options, className }: PieChartProps) => {
+  if (data.length <= 1) {
+    return (
+      <div className={`${className ?? ""} chart-empty`} style={{ height }}>
+        No data
+      </div>
+    );
+  }
 
   return (
     <Chart

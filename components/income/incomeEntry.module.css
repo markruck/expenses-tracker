@@ -1,9 +1,16 @@
 .incomeEntry {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr auto;
+    align-items: center;
     gap: 1rem;
 }
 
 .description {
     font-size: small;
+}
+
+@media (max-width: 700px) {
+    .incomeEntry {
+        grid-template-columns: 1fr auto;
+    }
 }
